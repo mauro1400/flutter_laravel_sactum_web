@@ -1,24 +1,25 @@
 <template>
-  <form @submit.prevent="register">
-    <div>
-      <label for="name">Name:</label>
-      <input type="text" id="name" v-model="form.name">
+  <form class="p-3 bg-light" @submit.prevent="register">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre:</label>
+      <input type="text" id="name" v-model="form.name" class="form-control">
     </div>
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" v-model="form.email">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" id="email" v-model="form.email" class="form-control">
     </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" v-model="form.password">
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña:</label>
+      <input type="password" id="password" v-model="form.password" class="form-control">
     </div>
-    <div>
-      <label for="password_confirmation">Confirm Password:</label>
-      <input type="password" id="password_confirmation" v-model="form.password_confirmation">
+    <div class="mb-3">
+      <label for="password_confirmation" class="form-label">Confirmar Contraseña:</label>
+      <input type="password" id="password_confirmation" v-model="form.password_confirmation" class="form-control">
     </div>
-    <button type="submit">Register</button>
+    <button type="submit" class="btn btn-primary">Registrar</button>
   </form>
 </template>
+
 
 <script>
 export default {
