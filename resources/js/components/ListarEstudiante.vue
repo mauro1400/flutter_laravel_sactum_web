@@ -30,12 +30,6 @@
                             <td>{{ estudiante.direccion }}</td>
                             <td>{{ estudiante.celular }}</td>
                             <td>{{ estudiante.grado }}</td>
-                            <td>
-                                <button @click="editarEstudiante(estudiante.ci)">Editar</button>
-                            </td>
-                            <td>
-                                <button @click="eliminarEstudiante(estudiante.ci)">Eliminar</button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
