@@ -14,6 +14,7 @@ class PersonaEstudianteController extends Controller
     {
         $estudiantes = Estudiante::join('personas', 'personas.id_persona', '=', 'estudiantes.id_persona')
             ->select(
+                'personas.id_persona',
                 'personas.nombres',
                 'personas.primer_apellido',
                 'personas.segundo_apellido',
@@ -33,21 +34,6 @@ class PersonaEstudianteController extends Controller
 
     public function insertarPersonaEstudiante(Request $request)
     {
-        /*
-        $validatedData = $request->validate([
-            'p_nombres' => 'required|string|max:255',
-            'p_primer_apellido' => 'required|string|max:255',
-            'p_segundo_apellido' => 'nullable|string|max:255',
-            'p_ci' => 'required|string|max:20|unique:personas',
-            'p_fecha_nacimiento' => 'required|date',
-            'p_genero' => 'required|boolean',
-            'p_direccion' => 'nullable|string|max:255',
-            'p_celular' => 'nullable|string|max:20',
-            'p_grado' => 'required|string|max:255',
-        ]);
-        */
-
-
         try {
             DB::beginTransaction();
 
@@ -82,4 +68,32 @@ class PersonaEstudianteController extends Controller
             ]);
         }
     }
+
+    public function eliminarPersonaEstudiante($id_persona)
+    {
+        try {
+            DB::beginTransaction();
+
+            $estudiante = Estudiante::where('id_persona', $id_persona)->first();
+            $estudiante->delete();
+
+            $persona = Persona::where('id_persona', $id_persona)->first();
+            $persona->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Registro eliminado con éxito.',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
 }

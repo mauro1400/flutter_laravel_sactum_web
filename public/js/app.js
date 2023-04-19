@@ -5358,26 +5358,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
  // Importando el componente Sidebar
@@ -5523,6 +5503,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -5544,7 +5525,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           case 0:
             try {
               token = localStorage.getItem('token');
-              axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/estudiantes", {
+              axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/listar-estudiantes", {
                 headers: {
                   Authorization: "Bearer ".concat(token)
                 }
@@ -5562,6 +5543,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }))();
+  },
+  methods: {
+    eliminarEstudiante: function eliminarEstudiante(id_persona) {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var token;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              token = localStorage.getItem('token');
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/eliminar-estudiantes/".concat(id_persona), {
+                headers: {
+                  Authorization: "Bearer ".concat(token)
+                }
+              });
+            case 4:
+              _this2.estudiantes = _this2.estudiantes.filter(function (est) {
+                return est.id_persona !== id_persona;
+              });
+              _context2.next = 10;
+              break;
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](0);
+              console.log(_context2.t0);
+            case 10:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 7]]);
+      }))();
+    }
   }
 });
 
@@ -6057,9 +6072,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]({
       requiresAuth: true
     }
   }, {
-    path: '/estudiantes',
-    name: 'estudiantes',
-    component: _components_ListarEstudiante_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    path: '/listar-estudiantes',
+    component: _components_ListarEstudiante_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    meta: {
+      requiresAuth: true
+    }
   }]
 });
 router.beforeEach(function (to, from, next) {
@@ -29254,287 +29271,259 @@ var render = function () {
             _vm._v("***Formulario de Estudiante***"),
           ]),
           _vm._v(" "),
-          _c("div", [
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function ($event) {
-                    $event.preventDefault()
-                    return _vm.submitForm.apply(null, arguments)
-                  },
+          _c(
+            "form",
+            {
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.submitForm.apply(null, arguments)
                 },
               },
-              [
-                _c("div", [
-                  _c("label", { attrs: { for: "p_nombres" } }, [
-                    _vm._v("Nombres"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.p_nombres,
-                        expression: "p_nombres",
-                      },
-                    ],
-                    attrs: { type: "text", id: "p_nombres" },
-                    domProps: { value: _vm.p_nombres },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.p_nombres = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "p_primer_apellido" } }, [
-                    _vm._v("Primer Apellido"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.p_primer_apellido,
-                        expression: "p_primer_apellido",
-                      },
-                    ],
-                    attrs: { type: "text", id: "p_primer_apellido" },
-                    domProps: { value: _vm.p_primer_apellido },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.p_primer_apellido = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "p_segundo_apellido" } }, [
-                    _vm._v("Segundo Apellido"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.p_segundo_apellido,
-                        expression: "p_segundo_apellido",
-                      },
-                    ],
-                    attrs: { type: "text", id: "p_segundo_apellido" },
-                    domProps: { value: _vm.p_segundo_apellido },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.p_segundo_apellido = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "p_ci" } }, [_vm._v("CI")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.p_ci,
-                        expression: "p_ci",
-                      },
-                    ],
-                    attrs: { type: "text", id: "p_ci" },
-                    domProps: { value: _vm.p_ci },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.p_ci = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "p_fecha_nacimiento" } }, [
-                    _vm._v("Fecha de Nacimiento"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.p_fecha_nacimiento,
-                        expression: "p_fecha_nacimiento",
-                      },
-                    ],
-                    attrs: { type: "date", id: "p_fecha_nacimiento" },
-                    domProps: { value: _vm.p_fecha_nacimiento },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.p_fecha_nacimiento = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "p_genero" } }, [
-                    _vm._v("Género"),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
+            },
+            [
+              _c("label", { attrs: { for: "p_nombres" } }, [_vm._v("Nombres")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.p_nombres,
+                    expression: "p_nombres",
+                  },
+                ],
+                attrs: { type: "text", id: "p_nombres" },
+                domProps: { value: _vm.p_nombres },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.p_nombres = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "p_primer_apellido" } }, [
+                _vm._v("Primer Apellido"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.p_primer_apellido,
+                    expression: "p_primer_apellido",
+                  },
+                ],
+                attrs: { type: "text", id: "p_primer_apellido" },
+                domProps: { value: _vm.p_primer_apellido },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.p_primer_apellido = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "p_segundo_apellido" } }, [
+                _vm._v("Segundo Apellido"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.p_segundo_apellido,
+                    expression: "p_segundo_apellido",
+                  },
+                ],
+                attrs: { type: "text", id: "p_segundo_apellido" },
+                domProps: { value: _vm.p_segundo_apellido },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.p_segundo_apellido = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "p_ci" } }, [_vm._v("CI")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.p_ci,
+                    expression: "p_ci",
+                  },
+                ],
+                attrs: { type: "text", id: "p_ci" },
+                domProps: { value: _vm.p_ci },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.p_ci = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "p_fecha_nacimiento" } }, [
+                _vm._v("Fecha de Nacimiento"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.p_fecha_nacimiento,
+                    expression: "p_fecha_nacimiento",
+                  },
+                ],
+                attrs: { type: "date", id: "p_fecha_nacimiento" },
+                domProps: { value: _vm.p_fecha_nacimiento },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.p_fecha_nacimiento = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "p_genero" } }, [_vm._v("Género")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.p_genero,
-                          expression: "p_genero",
-                        },
-                      ],
-                      attrs: { id: "p_genero" },
-                      on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.p_genero = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        },
-                      },
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.p_genero,
+                      expression: "p_genero",
                     },
-                    [
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v("Femenino"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [
-                        _vm._v("Masculino"),
-                      ]),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "p_direccion" } }, [
-                    _vm._v("Dirección"),
+                  ],
+                  attrs: { id: "p_genero" },
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.p_genero = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                  },
+                },
+                [
+                  _c("option", { attrs: { value: "0" } }, [_vm._v("Femenino")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "1" } }, [
+                    _vm._v("Masculino"),
                   ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.p_direccion,
-                        expression: "p_direccion",
-                      },
-                    ],
-                    attrs: { type: "text", id: "p_direccion" },
-                    domProps: { value: _vm.p_direccion },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.p_direccion = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "p_celular" } }, [
-                    _vm._v("Celular"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.p_celular,
-                        expression: "p_celular",
-                      },
-                    ],
-                    attrs: { type: "text", id: "p_celular" },
-                    domProps: { value: _vm.p_celular },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.p_celular = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "p_grado" } }, [_vm._v("Grado")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.p_grado,
-                        expression: "p_grado",
-                      },
-                    ],
-                    attrs: { type: "text", id: "p_grado" },
-                    domProps: { value: _vm.p_grado },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.p_grado = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("button", { attrs: { type: "submit" } }, [_vm._v("Enviar")]),
-                _vm._v(" "),
-                _vm.errorMessage
-                  ? _c("div", [_vm._v(_vm._s(_vm.errorMessage))])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.successMessage
-                  ? _c("div", [_vm._v(_vm._s(_vm.successMessage))])
-                  : _vm._e(),
-              ]
-            ),
-          ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "p_direccion" } }, [
+                _vm._v("Dirección"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.p_direccion,
+                    expression: "p_direccion",
+                  },
+                ],
+                attrs: { type: "text", id: "p_direccion" },
+                domProps: { value: _vm.p_direccion },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.p_direccion = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "p_celular" } }, [_vm._v("Celular")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.p_celular,
+                    expression: "p_celular",
+                  },
+                ],
+                attrs: { type: "text", id: "p_celular" },
+                domProps: { value: _vm.p_celular },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.p_celular = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "p_grado" } }, [_vm._v("Grado")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.p_grado,
+                    expression: "p_grado",
+                  },
+                ],
+                attrs: { type: "text", id: "p_grado" },
+                domProps: { value: _vm.p_grado },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.p_grado = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("button", { attrs: { type: "submit" } }, [_vm._v("Enviar")]),
+              _vm._v(" "),
+              _vm.errorMessage
+                ? _c("div", [_vm._v(_vm._s(_vm.errorMessage))])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.successMessage
+                ? _c("div", [_vm._v(_vm._s(_vm.successMessage))])
+                : _vm._e(),
+            ]
+          ),
         ]),
       ],
       1
@@ -29609,25 +29598,15 @@ var render = function () {
                       {
                         on: {
                           click: function ($event) {
-                            return _vm.editarEstudiante(estudiante.ci)
+                            return _vm.eliminarEstudiante(estudiante.id_persona)
                           },
                         },
                       },
-                      [_vm._v("Editar")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function ($event) {
-                            return _vm.eliminarEstudiante(estudiante.ci)
-                          },
-                        },
-                      },
-                      [_vm._v("Eliminar")]
+                      [
+                        _vm._v(
+                          "\n                                Eliminar\n                            "
+                        ),
+                      ]
                     ),
                   ]),
                 ])
@@ -29970,7 +29949,7 @@ var render = function () {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "/estudiantes" } }, [
+            _c("router-link", { attrs: { to: "/listar-estudiantes" } }, [
               _vm._v("Lista de Estudiantes"),
             ]),
           ],

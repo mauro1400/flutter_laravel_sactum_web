@@ -14,7 +14,8 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::post('/insertar-persona-estudiante', [PersonaEstudianteController::class, 'insertarPersonaEstudiante']);
-    Route::get('/estudiantes', [PersonaEstudianteController::class, 'index']);
+    Route::get('/listar-estudiantes', [PersonaEstudianteController::class, 'index']);
+    Route::delete('/eliminar-estudiantes/{id_estudiante}', [PersonaEstudianteController::class, 'eliminarPersonaEstudiante']);
     
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 });

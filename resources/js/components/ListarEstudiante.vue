@@ -20,6 +20,7 @@
                             <th>Grado</th>
                         </tr>
                     </thead>
+                    <!-- Agregar botón "Eliminar" a la tabla -->
                     <tbody>
                         <tr v-for="estudiante in estudiantes" :key="estudiante.ci">
                             <td>{{ estudiante.nombres }}</td>
@@ -30,8 +31,14 @@
                             <td>{{ estudiante.direccion }}</td>
                             <td>{{ estudiante.celular }}</td>
                             <td>{{ estudiante.grado }}</td>
+                            <td>
+                                <button @click="eliminarEstudiante(estudiante.id_persona)">
+                                    Eliminar
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
+
                 </table>
             </div>
         </div>
@@ -54,7 +61,7 @@ export default {
     async created() {
         try {
             const token = localStorage.getItem('token');
-            axios.get("/api/estudiantes", {
+            axios.get("/api/listar-estudiantes", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -66,6 +73,21 @@ export default {
             this.error = error.message;
         } finally {
             this.loading = false;
+        }
+    },
+    methods: {
+        async eliminarEstudiante(id_persona) {
+            try {
+                const token = localStorage.getItem('token');
+                await axios.delete(`/api/eliminar-estudiantes/${id_persona}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                this.estudiantes = this.estudiantes.filter(est => est.id_persona !== id_persona);
+            } catch (error) {
+                console.log(error);
+            }
         }
     },
 };

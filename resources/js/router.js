@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import UserInfo from './components/UserInfo.vue'
-import FormEstudiante from './components/FormEstudiante.vue';
+import FormEstudiante from './components/FormEstudiante.vue'
 import ListarEstudiante from './components/ListarEstudiante.vue'
  
 Vue.use(VueRouter)
@@ -30,9 +30,9 @@ const router = new VueRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/estudiantes',
-      name: 'estudiantes',
+      path: '/listar-estudiantes',
       component: ListarEstudiante,
+      meta: { requiresAuth: true }
     },
   ]
 })
