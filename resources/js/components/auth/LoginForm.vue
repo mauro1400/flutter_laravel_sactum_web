@@ -1,6 +1,8 @@
 <template>
-  <div class="container-fluid">
+  <main class="form-signin w-100 m-auto">
     <form class="p-4 bg-light" @submit.prevent="login">
+      <h1 class="h3 mb-3 fw-normal">Iniciar Secion</h1>
+
       <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
         <input type="email" id="email" class="form-control" v-model="form.email">
@@ -11,7 +13,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
     </form>
-  </div>
+  </main>
 </template>
 
   

@@ -4,12 +4,6 @@
             <li>
                 <router-link to="/listar-estudiantes">Estudiante</router-link>
             </li>
-            <li>
-                <router-link to="#">#</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link to="">link</router-link>   
-            </li>
         </ul>
     </div>
 </template>

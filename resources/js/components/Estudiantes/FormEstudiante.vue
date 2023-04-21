@@ -6,11 +6,14 @@
             <!-- Main Content -->
             <div class="col-md-10">
                 <router-link to="/listar-estudiantes" class="btn btn-primary"
-                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Volver atrás</router-link>
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    Volver atrás</router-link>
 
                 <h2 class="mb-4">***Formulario de Estudiante***</h2>
-
+                <!-- Alerta de Actualización -->
+                <div v-if="showAlert" class="alert alert-info" role="alert">
+                    Registro insertado con éxito! Redirigiendo en {{ countDown }} segundos.
+                </div>
                 <form @submit.prevent="submitForm">
                     <label for="p_nombres">Nombres</label>
                     <input type="text" id="p_nombres" v-model="p_nombres">
@@ -33,7 +36,7 @@
                     <input type="text" id="p_celular" v-model="p_celular">
                     <label for="p_grado">Grado</label>
                     <input type="text" id="p_grado" v-model="p_grado"> <button type="submit" class="btn btn-primary"
-                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Enviar</button>
+                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Enviar</button>
                     <div v-if="errorMessage">{{ errorMessage }}</div>
                     <div v-if="successMessage">{{ successMessage }}</div>
                 </form>
@@ -63,8 +66,11 @@ export default {
             p_grado: '',
             csrfToken: null,
             errorMessage: null,
-            successMessage: null, // Agregando variable para mensaje de éxito
+            successMessage: null,
+            showAlert: false, // muestra la alerta de actualización
+            countDown: 5, // Agregando variable para mensaje de éxito
         };
+        
     },
     mounted() {
         const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
@@ -91,11 +97,15 @@ export default {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     },
                 });
-                console.log(response.data);
-                this.successMessage = 'Usuario insertado con éxito'; // Estableciendo mensaje de éxito
-                setTimeout(() => {
-                    this.successMessage = null; // Limpiando el mensaje de éxito después de 5 segundos
-                }, 5000);
+                this.showAlert = true; // muestra la alerta
+                    this.countDown = 5; // reinicia el contador
+                    setInterval(() => {
+                        if (this.countDown > 0) {
+                            this.countDown--; // decrementa el contador
+                        } else {
+                            this.$router.push('/listar-estudiantes'); // redirecciona
+                        }
+                    }, 1000);
             } catch (error) {
                 console.error(error);
             }

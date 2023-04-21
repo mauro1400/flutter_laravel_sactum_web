@@ -10,6 +10,10 @@
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                     Volver atrás</router-link>
                 <h1>Editar Estudiante</h1>
+                <!-- Alerta de Actualización -->
+                <div v-if="showAlert" class="alert alert-info" role="alert">
+                    Registro Actualizado! Redirigiendo en {{ countDown }} segundos.
+                </div>
                 <!--@submit.prevent="updateForm"-->
                 <form @submit.prevent="updateForm">
                     <label for="p_nombres">Nombres</label>
@@ -37,6 +41,7 @@
                         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Actualizar
                         Registro</button>
                 </form>
+
             </div>
         </div>
     </div>
@@ -61,6 +66,8 @@ export default {
                 celular: "",
                 grado: "",
             },
+            showAlert: false, // muestra la alerta de actualización
+            countDown: 5, // contador para redireccionar
         };
     },
     async created() {
@@ -104,7 +111,15 @@ export default {
                         Authorization: `Bearer ${token}`
                     },
                 }).then((response) => {
-                    this.$router.push('/listar-estudiantes');
+                    this.showAlert = true; // muestra la alerta
+                    this.countDown = 5; // reinicia el contador
+                    setInterval(() => {
+                        if (this.countDown > 0) {
+                            this.countDown--; // decrementa el contador
+                        } else {
+                            this.$router.push('/listar-estudiantes'); // redirecciona
+                        }
+                    }, 1000); // actualiza el contador cada segundo
                 });
             } catch (error) {
                 console.log(error);

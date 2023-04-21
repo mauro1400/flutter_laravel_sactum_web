@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LoginForm from './components/LoginForm.vue'
-import RegisterForm from './components/RegisterForm.vue'
-import UserInfo from './components/UserInfo.vue'
-import FormEstudiante from './components/FormEstudiante.vue'
-import ListarEstudiante from './components/ListarEstudiante.vue'
+import LoginForm from './components/auth/LoginForm.vue'
+import RegisterForm from './components/auth/RegisterForm.vue'
+import UserInfo from './components/auth/UserInfo.vue'
+import FormEstudiante from './components/Estudiantes/FormEstudiante.vue'
+import ListarEstudiante from './components/Estudiantes/ListarEstudiante.vue'
 import EditarEstudiantes from './components/Estudiantes/EditarEstudiante.vue'
 
 Vue.use(VueRouter)
