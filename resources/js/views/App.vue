@@ -24,9 +24,9 @@
 
 
 <script>
-import LoginForm from '../components/LoginForm.vue'
-import RegisterForm from '../components/RegisterForm.vue'
-import UserInfo from '../components/UserInfo.vue'
+import LoginForm from '../components/auth/LoginForm.vue'
+import RegisterForm from '../components/auth/RegisterForm.vue'
+import UserInfo from '../components/auth/UserInfo.vue'
 
 export default {
   computed: {

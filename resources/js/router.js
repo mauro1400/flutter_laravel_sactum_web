@@ -5,7 +5,7 @@ import RegisterForm from './components/RegisterForm.vue'
 import UserInfo from './components/UserInfo.vue'
 import FormEstudiante from './components/FormEstudiante.vue'
 import ListarEstudiante from './components/ListarEstudiante.vue'
-import EditarEstudiantes from './components/EditarEstudiante.vue'
+import EditarEstudiantes from './components/Estudiantes/EditarEstudiante.vue'
 
 Vue.use(VueRouter)
 

@@ -58,7 +58,7 @@
   
 <script>
 import axios from 'axios';
-import Sidebar from '../components/Sidebar.vue';
+import Sidebar from '../Sidebar.vue';
 
 export default {
     components: {
