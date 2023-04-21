@@ -5,6 +5,10 @@
             <Sidebar></Sidebar>
             <!-- Main Content -->
             <div class="col-md-10">
+                <router-link to="/listar-estudiantes" class="btn btn-primary"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                    Volver atrás</router-link>
+
                 <h2 class="mb-4">***Formulario de Estudiante***</h2>
 
                 <form @submit.prevent="submitForm">
@@ -28,7 +32,8 @@
                     <label for="p_celular">Celular</label>
                     <input type="text" id="p_celular" v-model="p_celular">
                     <label for="p_grado">Grado</label>
-                    <input type="text" id="p_grado" v-model="p_grado"> <button type="submit">Enviar</button>
+                    <input type="text" id="p_grado" v-model="p_grado"> <button type="submit" class="btn btn-primary"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Enviar</button>
                     <div v-if="errorMessage">{{ errorMessage }}</div>
                     <div v-if="successMessage">{{ successMessage }}</div>
                 </form>

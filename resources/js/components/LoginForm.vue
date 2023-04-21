@@ -31,6 +31,7 @@ export default {
         const response = await axios.post('/api/login', this.form)
         localStorage.setItem('token', response.data.access_token)
         this.$router.push('/user')
+        location.reload()
       } catch (error) {
         console.error(error)
       }

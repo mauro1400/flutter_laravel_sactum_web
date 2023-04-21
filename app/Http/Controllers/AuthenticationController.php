@@ -11,12 +11,12 @@ class AuthenticationController extends Controller
 {
     
         public function register(Request $request)
-    {
+    {/*
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed',
-        ]);
+        ]);*/
 
         $user = User::create([
             'name' => $request->name,
@@ -33,12 +33,12 @@ class AuthenticationController extends Controller
     }
 
     public function login(Request $request)
-    {
+    {/*
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
             'remember_me' => 'boolean',
-        ]);
+        ]);*/
 
         $credentials = request(['email', 'password']);
 

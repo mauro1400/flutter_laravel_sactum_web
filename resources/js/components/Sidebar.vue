@@ -2,10 +2,10 @@
     <div class="col-md-2 bg-light" style="height: 560px;">
         <ul class="nav flex-column">
             <li>
-                <router-link to="/form-estudiante">Formulario de Estudiante</router-link>
+                <router-link to="/listar-estudiantes">Estudiante</router-link>
             </li>
             <li>
-                <router-link to="/listar-estudiantes">Lista de Estudiantes</router-link>
+                <router-link to="#">#</router-link>
             </li>
             <li class="nav-item">
                 <router-link to="">link</router-link>   

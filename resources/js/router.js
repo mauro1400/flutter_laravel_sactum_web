@@ -5,7 +5,8 @@ import RegisterForm from './components/RegisterForm.vue'
 import UserInfo from './components/UserInfo.vue'
 import FormEstudiante from './components/FormEstudiante.vue'
 import ListarEstudiante from './components/ListarEstudiante.vue'
- 
+import EditarEstudiantes from './components/EditarEstudiante.vue'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -32,6 +33,12 @@ const router = new VueRouter({
     {
       path: '/listar-estudiantes',
       component: ListarEstudiante,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/editar-estudiante/:id_persona',
+      name: 'editarEstudiante',
+      component: EditarEstudiantes,
       meta: { requiresAuth: true }
     },
   ]

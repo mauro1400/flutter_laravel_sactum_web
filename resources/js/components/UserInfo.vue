@@ -64,6 +64,7 @@ export default {
         })
         localStorage.removeItem('token')
         this.$router.push('/login')
+        location.reload()
       } catch (error) {
         console.error(error)
       }

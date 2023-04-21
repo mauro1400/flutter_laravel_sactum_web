@@ -11,9 +11,6 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/login">Iniciar Sesion</router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/register">Registrarse</router-link>
-            </li>
             <li v-if="isLoggedIn" class="nav-item">
               <router-link class="nav-link" to="/user">Información de Usuario</router-link>
             </li>
