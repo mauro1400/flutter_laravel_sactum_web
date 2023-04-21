@@ -1,37 +1,42 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <!-- Sidebar -->
+
+    <!--Main Navigation-->
+    <header>
       <Sidebar></Sidebar>
-      <!-- Main Content -->
-      <div class="col-md-10">
-        <h2 class="mb-4">***Bienvenido***</h2>
-        <div v-if="user" class="card mb-4">
-          <div class="card-body">
-            <p class="card-text">Nombre: {{ user.name }}</p>
-            <p class="card-text">Correo electrónico: {{ user.email }}</p>
-            <button @click="logout" class="btn btn-primary">Cerrar sesión</button>
-          </div>
+      <Nav></Nav>
+    </header>
+    <!--Main Navigation-->
+    <!-- Main Content -->
+    <main style="padding-top: 70px;padding-left: 250px;">
+      <h2 class="mb-4">***Bienvenido***</h2>
+      <div v-if="user" class="card mb-4">
+        <div class="card-body">
+          <p class="card-text">Nombre: {{ user.name }}</p>
+          <p class="card-text">Correo electrónico: {{ user.email }}</p>
+          <button @click="logout" class="btn btn-primary">Cerrar sesión</button>
         </div>
-        <div v-else-if="loading" class="alert alert-info" role="alert">
-          Cargando datos de usuario...
-        </div>
-        <div v-else class="alert alert-warning" role="alert">
-          Debe iniciar sesión para ver esta página.
-        </div>
-        <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
       </div>
-    </div>
+      <div v-else-if="loading" class="alert alert-info" role="alert">
+        Cargando datos de usuario...
+      </div>
+      <div v-else class="alert alert-warning" role="alert">
+        Debe iniciar sesión para ver esta página.
+      </div>
+      <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
+    </main>
   </div>
 </template>
 
 
 <script>
-import Sidebar from '../Sidebar.vue' // Importando el componente Sidebar
+import Sidebar from '../Sidebar.vue'
+import Nav from '../Nav.vue'// Importando el componente Sidebar
 
 export default {
   components: {
-    Sidebar // Registrando el componente Sidebar
+    Sidebar,
+    Nav // Registrando el componente Sidebar
   },
   data() {
     return {

@@ -1,19 +1,34 @@
 <template>
-  <main class="form-signin w-100 m-auto">
-    <form class="p-4 bg-light" @submit.prevent="login">
-      <h1 class="h3 mb-3 fw-normal">Iniciar Secion</h1>
+  <section class="vh-100 gradient-custom">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body text-center">
 
-      <div class="mb-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" id="email" class="form-control" v-model="form.email">
+              <div class="mb-md-5 mt-md-4 pb-5">
+
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <p class="text-white-50 mb-5">¡Por favor, introduce tu usuario y contraseña!</p>
+                <form @submit.prevent="login">
+
+                  <div class="form-outline form-white mb-4">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" class="form-control" v-model="form.email">
+                  </div>
+                  <div class="form-outline form-white mb-4">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" id="password" class="form-control" v-model="form.password">
+                  </div>
+                  <button type="submit" class="btn btn-outline-light btn-lg px-5">Iniciar Sesion</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Contraseña:</label>
-        <input type="password" id="password" class="form-control" v-model="form.password">
-      </div>
-      <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
-    </form>
-  </main>
+    </div>
+  </section>
 </template>
 
   

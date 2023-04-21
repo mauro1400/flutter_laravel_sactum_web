@@ -1,68 +1,92 @@
 <template>
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
+    <section class="container-fluid">
+        <!--Main Navigation-->
+        <header>
             <Sidebar></Sidebar>
-            <!-- Main Content -->
-            <div class="col-md-10">
-                <router-link to="/form-estudiante" class="btn btn-primary"
-                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Crear Registro
-                                </router-link>
-                <h1>Lista de Estudiantes</h1>
-                <table>
-                    <thead>
-                        <tr>                    
-                            <th>Acciones</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>CI</th>
-                            <th>Fecha de Nacimiento</th>
-                            <th>Género</th>
-                            <th>Dirección</th>
-                            <th>Celular</th>
-                            <th>Grado</th>
-                        </tr>
-                    </thead>
-                    <!-- Agregar botón "Eliminar" a la tabla -->
-                    <tbody>
-                        <tr v-for="estudiante in estudiantes" :key="estudiante.ci">
-                            <td>
-                                <button class="btn btn-primary"
-                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-                                    @click="eliminarEstudiante(estudiante.id_persona)">
-                                    Eliminar
-                                </button>
-                                <router-link :to="{ name: 'editarEstudiante', params: { id_persona: estudiante.id_persona } }"
-                                class="btn btn-primary"
-                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Editar
-                                </router-link>
-                            </td>
-                            <td>{{ estudiante.nombres }}</td>
-                            <td>{{ estudiante.primer_apellido }} {{ estudiante.segundo_apellido }}</td>
-                            <td>{{ estudiante.ci }}</td>
-                            <td>{{ estudiante.fecha_nacimiento }}</td>
-                            <td>{{ estudiante.genero }}</td>
-                            <td>{{ estudiante.direccion }}</td>
-                            <td>{{ estudiante.celular }}</td>
-                            <td>{{ estudiante.grado }}</td>
-                            <td>{{ estudiante.id_persona }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <Nav></Nav>
+        </header>
+        <!--Main Navigation-->
+        <!--Main layout-->
+        <main style="padding-top: 70px;padding-left: 250px;">
+
+            <div class="mask d-flex align-items-center h-100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                                        style="position: relative; height: 700px">
+                                        <h2 class="mb-4 text-center">Listar Estudiantes</h2>
+                                        <div class="container">
+                                            <router-link to="/form-estudiante" class="btn btn-primary"
+                                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                                Crear Registro
+                                            </router-link>
+                                        </div>
+                                        <br>
+                                        <table class="table table-striped mb-0">
+                                            <thead style="background-color: #002d72;">
+
+                                                <tr>
+                                                    <th>Acciones</th>
+                                                    <th>Nombre</th>
+                                                    <th>Apellido</th>
+                                                    <th>CI</th>
+                                                    <th>Fecha de Nacimiento</th>
+                                                    <th>Género</th>
+                                                    <th>Dirección</th>
+                                                    <th>Celular</th>
+                                                    <th>Grado</th>
+                                                </tr>
+                                            </thead>
+                                            <!-- Agregar botón "Eliminar" a la tabla -->
+                                            <tbody>
+                                                <tr v-for="estudiante in estudiantes" :key="estudiante.ci">
+                                                    <td>
+                                                        <button class="btn btn-primary"
+                                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                                                            @click="eliminarEstudiante(estudiante.id_persona)">
+                                                            Eliminar
+                                                        </button>
+                                                        <router-link
+                                                            :to="{ name: 'editarEstudiante', params: { id_persona: estudiante.id_persona } }"
+                                                            class="btn btn-primary"
+                                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                                            Editar
+                                                        </router-link>
+                                                    </td>
+                                                    <td>{{ estudiante.nombres }}</td>
+                                                    <td>{{ estudiante.primer_apellido }} {{
+                                                        estudiante.segundo_apellido }}</td>
+                                                    <td>{{ estudiante.ci }}</td>
+                                                    <td>{{ estudiante.fecha_nacimiento }}</td>
+                                                    <td>{{ estudiante.genero }}</td>
+                                                    <td>{{ estudiante.direccion }}</td>
+                                                    <td>{{ estudiante.celular }}</td>
+                                                    <td>{{ estudiante.grado }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </main>
+    </section>
 </template>
   
 <script>
 import axios from 'axios';
 import Sidebar from '../Sidebar.vue';
-
+import Nav from '../Nav.vue'
 export default {
     components: {
-        Sidebar
+        Sidebar,
+        Nav,
     },
     data() {
         return {

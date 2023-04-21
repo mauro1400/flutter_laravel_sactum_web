@@ -13,6 +13,11 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      name: 'home',
+      component: LoginForm
+    },
+    {
       path: '/login',
       component: LoginForm
     },

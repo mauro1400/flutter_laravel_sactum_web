@@ -1,57 +1,58 @@
 <template>
     <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
+        <!--Main Navigation-->
+        <header>
             <Sidebar></Sidebar>
-            <!-- Main Content -->
-            <div class="col-md-10">
-                <router-link to="/listar-estudiantes" class="btn btn-primary"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                    Volver atrás</router-link>
+            <Nav></Nav>
+        </header>
+        <!--Main Navigation-->
+        <!--Main layout-->
+        <main style="padding-top: 70px;padding-left: 250px;">
+            <router-link to="/listar-estudiantes" class="btn btn-primary"
+                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                Volver atrás</router-link>
 
-                <h2 class="mb-4">***Formulario de Estudiante***</h2>
-                <!-- Alerta de Actualización -->
-                <div v-if="showAlert" class="alert alert-info" role="alert">
-                    Registro insertado con éxito! Redirigiendo en {{ countDown }} segundos.
-                </div>
-                <form @submit.prevent="submitForm">
-                    <label for="p_nombres">Nombres</label>
-                    <input type="text" id="p_nombres" v-model="p_nombres">
-                    <label for="p_primer_apellido">Primer Apellido</label>
-                    <input type="text" id="p_primer_apellido" v-model="p_primer_apellido">
-                    <label for="p_segundo_apellido">Segundo Apellido</label>
-                    <input type="text" id="p_segundo_apellido" v-model="p_segundo_apellido">
-                    <label for="p_ci">CI</label>
-                    <input type="text" id="p_ci" v-model="p_ci">
-                    <label for="p_fecha_nacimiento">Fecha de Nacimiento</label>
-                    <input type="date" id="p_fecha_nacimiento" v-model="p_fecha_nacimiento">
-                    <label for="p_genero">Género</label>
-                    <select id="p_genero" v-model="p_genero">
-                        <option value="0">Femenino</option>
-                        <option value="1">Masculino</option>
-                    </select>
-                    <label for="p_direccion">Dirección</label>
-                    <input type="text" id="p_direccion" v-model="p_direccion">
-                    <label for="p_celular">Celular</label>
-                    <input type="text" id="p_celular" v-model="p_celular">
-                    <label for="p_grado">Grado</label>
-                    <input type="text" id="p_grado" v-model="p_grado"> <button type="submit" class="btn btn-primary"
-                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Enviar</button>
-                    <div v-if="errorMessage">{{ errorMessage }}</div>
-                    <div v-if="successMessage">{{ successMessage }}</div>
-                </form>
+            <h2 class="mb-4">***Formulario de Estudiante***</h2>
+            <!-- Alerta de Actualización -->
+            <div v-if="showAlert" class="alert alert-info" role="alert">
+                Registro insertado con éxito! Redirigiendo en {{ countDown }} segundos.
             </div>
-        </div>
+            <form @submit.prevent="submitForm">
+                <label for="p_nombres">Nombres</label>
+                <input type="text" id="p_nombres" v-model="p_nombres">
+                <label for="p_primer_apellido">Primer Apellido</label>
+                <input type="text" id="p_primer_apellido" v-model="p_primer_apellido">
+                <label for="p_segundo_apellido">Segundo Apellido</label>
+                <input type="text" id="p_segundo_apellido" v-model="p_segundo_apellido">
+                <label for="p_ci">CI</label>
+                <input type="text" id="p_ci" v-model="p_ci">
+                <label for="p_fecha_nacimiento">Fecha de Nacimiento</label>
+                <input type="date" id="p_fecha_nacimiento" v-model="p_fecha_nacimiento">
+                <label for="p_genero">Género</label>
+                <select id="p_genero" v-model="p_genero">
+                    <option value="0">Femenino</option>
+                    <option value="1">Masculino</option>
+                </select>
+                <label for="p_direccion">Dirección</label>
+                <input type="text" id="p_direccion" v-model="p_direccion">
+                <label for="p_celular">Celular</label>
+                <input type="text" id="p_celular" v-model="p_celular">
+                <label for="p_grado">Grado</label>
+                <input type="text" id="p_grado" v-model="p_grado"> <button type="submit" class="btn btn-primary"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Enviar</button>
+            </form>
+        </main>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import Sidebar from '../Sidebar.vue'; // Importando el componente Sidebar
-
+import Nav from '../Nav.vue'
 export default {
     components: {
-        Sidebar // Registrando el componente Sidebar
+        Sidebar,
+        Nav, // Registrando el componente Sidebar
     },
     data() {
         return {
@@ -65,12 +66,10 @@ export default {
             p_celular: '',
             p_grado: '',
             csrfToken: null,
-            errorMessage: null,
-            successMessage: null,
             showAlert: false, // muestra la alerta de actualización
-            countDown: 5, // Agregando variable para mensaje de éxito
+            countDown: 2, // Agregando variable para mensaje de éxito
         };
-        
+
     },
     mounted() {
         const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
@@ -98,14 +97,15 @@ export default {
                     },
                 });
                 this.showAlert = true; // muestra la alerta
-                    this.countDown = 5; // reinicia el contador
-                    setInterval(() => {
-                        if (this.countDown > 0) {
-                            this.countDown--; // decrementa el contador
-                        } else {
-                            this.$router.push('/listar-estudiantes'); // redirecciona
-                        }
-                    }, 1000);
+                this.countDown = 2; // reinicia el contador
+                setInterval(() => {
+                    if (this.countDown > 0) {
+                        this.countDown--; // decrementa el contador
+                    } else {
+                        this.$router.push('/listar-estudiantes');
+                        location.reload()
+                    }
+                }, 1000);
             } catch (error) {
                 console.error(error);
             }
