@@ -1,20 +1,21 @@
 <template>
     <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-        <div class="position-sticky">
-            <div class="list-group list-group-flush mx-3 mt-4">
-                <router-link to="/listar-estudiantes" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-                    <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Estudiante</span></router-link>
-            </div>
-        </div>
-    </nav>
-    <!-- Sidebar -->
+    
+    <div class="d-flex flex-column sidebar sflex-shrink-0 p-3 text-bg-dark">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <span class="fs-4">Sidebar</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li>
+                <router-link to="/listar-estudiantes" class="nav-link text-white"><span>Estudiante</span></router-link>
+            </li>
+        </ul>
+    </div>
 </template>
-
-
-  
 <script>
 export default {
     name: 'Sidebar'
 }
-</script> 
+</script>
+ 

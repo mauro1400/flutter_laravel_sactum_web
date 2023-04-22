@@ -7,27 +7,24 @@
         </header>
         <!--Main Navigation-->
         <!--Main layout-->
-        <main style="padding-top: 70px;padding-left: 250px;">
-
             <div class="mask d-flex align-items-center h-100">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body p-0">
-                                    <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
-                                        style="position: relative; height: 700px">
+                                <div class="card-body">
+                                    <div>
                                         <h2 class="mb-4 text-center">Listar Estudiantes</h2>
+                                        <hr>
                                         <div class="container">
                                             <router-link to="/form-estudiante" class="btn btn-primary"
                                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                                 Crear Registro
                                             </router-link>
                                         </div>
-                                        <br>
-                                        <table class="table table-striped mb-0">
-                                            <thead style="background-color: #002d72;">
-
+                                        <hr>
+                                        <table class="table table-bordered border-primary">
+                                            <thead class="table-dark">
                                                 <tr>
                                                     <th>Acciones</th>
                                                     <th>Nombre</th>
@@ -75,7 +72,6 @@
                     </div>
                 </div>
             </div>
-        </main>
     </section>
 </template>
   

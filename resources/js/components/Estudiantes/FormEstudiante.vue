@@ -7,41 +7,94 @@
         </header>
         <!--Main Navigation-->
         <!--Main layout-->
-        <main style="padding-top: 70px;padding-left: 250px;">
-            <router-link to="/listar-estudiantes" class="btn btn-primary"
-                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                Volver atrás</router-link>
+        <section class="gradient-custom">
+            <div class="container">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-12 col-lg-9 col-xl-7">
+                        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                            <div class="card-body p-4 p-md-5">
+                                <router-link to="/listar-estudiantes" class="btn btn-primary"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                    Volver atrás</router-link>
+                                <hr>
+                                <h3>Ingresar Estudiante</h3>
+                                <hr>
+                                <!-- Alerta de Actualización -->
+                                <div v-if="showAlert" class="alert alert-info" role="alert">
+                                    Registro Insertado con éxito! Redirigiendo en {{ countDown }} segundos.
+                                </div>
+                                <form @submit.prevent="submitForm">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-4">
+                                            <label class="form-label" for="p_nombres">Nombres</label>
+                                            <input class="form-control form-control-sm" type="text" id="p_nombres"
+                                                v-model="p_nombres">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="p_primer_apellido">Primer Apellido</label>
+                                            <input class="form-control form-control-sm" type="text" id="p_primer_apellido"
+                                                v-model="p_primer_apellido">
+                                        </div>
 
-            <h2 class="mb-4">***Formulario de Estudiante***</h2>
-            <!-- Alerta de Actualización -->
-            <div v-if="showAlert" class="alert alert-info" role="alert">
-                Registro insertado con éxito! Redirigiendo en {{ countDown }} segundos.
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="p_segundo_apellido">Segundo Apellido</label>
+                                            <input class="form-control form-control-sm" type="text" id="p_segundo_apellido"
+                                                v-model="p_segundo_apellido">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="p_ci">CI</label>
+                                            <input class="form-control form-control-sm" type="text" id="p_ci"
+                                                v-model="p_ci">
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="p_fecha_nacimiento">Fecha de Nacimiento</label>
+                                            <input class="form-control form-control-sm" type="date" id="p_fecha_nacimiento"
+                                                v-model="p_fecha_nacimiento">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label select-label" for="p_genero">Género</label>
+                                            <select class="select form-control-sm" id="p_genero" v-model="p_genero">
+                                                <option value="0">Femenino</option>
+                                                <option value="1">Masculino</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="p_direccion">Dirección</label>
+                                            <input class="form-control form-control-sm" type="text" id="p_direccion"
+                                                v-model="p_direccion">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="p_celular">Celular</label>
+                                            <input class="form-control form-control-sm" type="text" id="p_celular"
+                                                v-model="p_celular">
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="p_grado">Grado</label>
+                                            <input class="form-control form-control-sm" type="text" id="p_grado"
+                                                v-model="p_grado">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-4">
+                                            <button type="submit" class="btn btn-primary"
+                                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Enviar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form @submit.prevent="submitForm">
-                <label for="p_nombres">Nombres</label>
-                <input type="text" id="p_nombres" v-model="p_nombres">
-                <label for="p_primer_apellido">Primer Apellido</label>
-                <input type="text" id="p_primer_apellido" v-model="p_primer_apellido">
-                <label for="p_segundo_apellido">Segundo Apellido</label>
-                <input type="text" id="p_segundo_apellido" v-model="p_segundo_apellido">
-                <label for="p_ci">CI</label>
-                <input type="text" id="p_ci" v-model="p_ci">
-                <label for="p_fecha_nacimiento">Fecha de Nacimiento</label>
-                <input type="date" id="p_fecha_nacimiento" v-model="p_fecha_nacimiento">
-                <label for="p_genero">Género</label>
-                <select id="p_genero" v-model="p_genero">
-                    <option value="0">Femenino</option>
-                    <option value="1">Masculino</option>
-                </select>
-                <label for="p_direccion">Dirección</label>
-                <input type="text" id="p_direccion" v-model="p_direccion">
-                <label for="p_celular">Celular</label>
-                <input type="text" id="p_celular" v-model="p_celular">
-                <label for="p_grado">Grado</label>
-                <input type="text" id="p_grado" v-model="p_grado"> <button type="submit" class="btn btn-primary"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Enviar</button>
-            </form>
-        </main>
+        </section>
     </div>
 </template>
 
