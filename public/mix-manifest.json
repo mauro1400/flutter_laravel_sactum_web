@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/Home.js": "/js/Home.js",
+    "/js/Navbar.js": "/js/Navbar.js",
+    "/js/Sidebar.js": "/js/Sidebar.js",
     "/css/app.css": "/css/app.css"
 }

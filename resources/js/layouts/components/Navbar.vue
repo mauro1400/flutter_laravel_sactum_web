@@ -17,7 +17,7 @@
             <!-- Right links -->
             <ul class="navbar-nav ms-auto d-flex flex-row">
                 <li v-if="isLoggedIn" class="nav-item">
-                    <router-link class="nav-link me-3 me-lg-0" to="/user">Información de Usuario</router-link>
+                    <router-link class="nav-link me-3 me-lg-0" :to="{ name: 'user' }">Información de Usuario</router-link>
                 </li>
             </ul>
         </div>

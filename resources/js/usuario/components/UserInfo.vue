@@ -1,14 +1,6 @@
 <template>
   <div class="container-fluid">
 
-    <!--Main Navigation-->
-    <header>
-      <Sidebar></Sidebar>
-      <Nav></Nav>
-    </header>
-    <!--Main Navigation-->
-    <!-- Main Content -->
-    <main style="padding-top: 70px;padding-left: 250px;">
       <h2 class="mb-4">***Bienvenido***</h2>
       <div v-if="user" class="card mb-4">
         <div class="card-body">
@@ -24,20 +16,13 @@
         Debe iniciar sesión para ver esta página.
       </div>
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
-    </main>
   </div>
 </template>
 
 
 <script>
-import Sidebar from '../Sidebar.vue'
-import Nav from '../Nav.vue'// Importando el componente Sidebar
 
 export default {
-  components: {
-    Sidebar,
-    Nav // Registrando el componente Sidebar
-  },
   data() {
     return {
       user: null,
@@ -68,8 +53,7 @@ export default {
           }
         })
         localStorage.removeItem('token')
-        this.$router.push('/login')
-        location.reload()
+        this.$router.push('/')
       } catch (error) {
         console.error(error)
       }
