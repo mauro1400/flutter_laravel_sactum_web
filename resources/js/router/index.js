@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 const home = [
   {
     name: 'home',
-    path: '/home',
+    path: '/',
     component: () => import(/* webpackChunkName: "Home" */  '../Home.vue'),
     meta: {
       title: 'Inicio',

@@ -73,7 +73,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 3:
               response = _context.sent;
               localStorage.setItem('token', response.data.access_token);
-              _this.$router.push('/home');
+              _this.$router.push({
+                name: 'home'
+              });
               _context.next = 11;
               break;
             case 8:

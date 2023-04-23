@@ -5376,12 +5376,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   name: 'login',
-  path: '/',
+  path: '/login',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_auth_components_LoginForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/LoginForm.vue */ "./resources/js/auth/components/LoginForm.vue"));
   },
   meta: {
-    title: 'Iniciar Sesión'
+    title: 'Iniciar Sesión',
+    middleware: 'guest'
   }
 }]);
 
@@ -5451,7 +5452,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 var home = [{
   name: 'home',
-  path: '/home',
+  path: '/',
   component: function component() {
     return __webpack_require__.e(/*! import() | Home */ "Home").then(__webpack_require__.bind(__webpack_require__, /*! ../Home.vue */ "./resources/js/Home.vue"));
   },

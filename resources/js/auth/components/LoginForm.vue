@@ -47,7 +47,7 @@ export default {
       try {
         const response = await axios.post('/api/login', this.form)
         localStorage.setItem('token', response.data.access_token)
-        this.$router.push('/home')
+        this.$router.push({name:'home'})
       } catch (error) {
         console.error(error)
       }
