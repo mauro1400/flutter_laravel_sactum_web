@@ -42,10 +42,20 @@
                             </div>
                             <div class="col-md-4 mb-4">
                                 <label class="form-label select-label" for="p_genero">Género</label>
-                                <select class="select form-control-sm" id="p_genero" v-model="p_genero">
-                                    <option value="0">Femenino</option>
-                                    <option value="1">Masculino</option>
-                                </select>
+                                <div class="form-check">
+                                    <input v-model="p_genero" class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Femenino
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input v-model="p_genero" class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Masculino
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -61,8 +71,8 @@
                                 <input class="form-control form-control-sm" type="text" id="p_celular" v-model="p_celular">
                             </div>
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_grado">Grado</label>
-                                <input class="form-control form-control-sm" type="text" id="p_grado" v-model="p_grado">
+                                <label class="form-label" for="p_pin">Pin</label>
+                                <input class="form-control form-control-sm" type="text" id="p_pin" v-model="p_pin">
                             </div>
                         </div>
 
@@ -93,7 +103,7 @@ export default {
             p_genero: '',
             p_direccion: '',
             p_celular: '',
-            p_grado: '',
+            p_pin: '',
             csrfToken: null,
             showAlert: false, // muestra la alerta de actualización
             countDown: 2, // Agregando variable para mensaje de éxito
@@ -109,7 +119,7 @@ export default {
     methods: {
         async submitForm() {
             try {
-                const response = await axios.post('/api/insertar-persona-estudiante', {
+                const response = await axios.post('/api/insertar-persona-chofer', {
                     p_nombres: this.p_nombres,
                     p_primer_apellido: this.p_primer_apellido,
                     p_segundo_apellido: this.p_segundo_apellido,
@@ -118,7 +128,7 @@ export default {
                     p_genero: this.p_genero,
                     p_direccion: this.p_direccion,
                     p_celular: this.p_celular,
-                    p_grado: this.p_grado,
+                    p_pin: this.p_pin,
                 }, {
                     headers: {
                         'X-CSRF-TOKEN': this.csrfToken,
@@ -131,7 +141,7 @@ export default {
                     if (this.countDown > 0) {
                         this.countDown--; // decrementa el contador
                     } else {
-                        this.$router.push({ name: 'listarEstudiante' });
+                        this.$router.push({ name: 'listarChofer' });
                         location.reload()
                     }
                 }, 1000);

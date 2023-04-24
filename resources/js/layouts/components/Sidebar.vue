@@ -8,7 +8,11 @@
         <ul class="nav nav-pills flex-column mb-auto">
             <li>
                 <router-link :to="{ name: 'listarEstudiante' }"
-                    class="nav-link text-white"><span>Estudiante</span></router-link>
+                    class="nav-link text-white"><span>Estudiantes</span></router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: 'listarChofer' }"
+                    class="nav-link text-white"><span>Choferes</span></router-link>
             </li>
         </ul>
     </div>

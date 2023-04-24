@@ -7,10 +7,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    <h2 class="mb-4 text-center">Listar Estudiantes</h2>
+                                    <h2 class="mb-4 text-center">Listar Choferes</h2>
                                     <hr>
                                     <div class="container">
-                                        <router-link :to="{ name: 'ingresarEstudiante' }" class="btn btn-primary"
+                                        <router-link :to="{ name: 'ingresarChofer' }" class="btn btn-primary"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                             Crear Registro
                                         </router-link>
@@ -27,34 +27,33 @@
                                                 <th>Género</th>
                                                 <th>Dirección</th>
                                                 <th>Celular</th>
-                                                <th>Grado</th>
+                                                <th>Pin</th>
                                             </tr>
                                         </thead>
                                         <!-- Agregar botón "Eliminar" a la tabla -->
                                         <tbody>
-                                            <tr v-for="estudiante in estudiantes" :key="estudiante.ci">
+                                            <tr v-for="chofer in choferes" :key="chofer.ci">
                                                 <td>
                                                     <button class="btn btn-primary"
                                                         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-                                                        @click="eliminarEstudiante(estudiante.id_persona)">
+                                                        @click="eliminarChofer(chofer.id_persona)">
                                                         Eliminar
                                                     </button>
                                                     <router-link
-                                                        :to="{ name: 'editarEstudiante', params: { id_persona: estudiante.id_persona } }"
+                                                        :to="{ name: 'editarChofer', params: { id_persona: chofer.id_persona } }"
                                                         class="btn btn-primary"
                                                         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                                         Editar
                                                     </router-link>
                                                 </td>
-                                                <td>{{ estudiante.nombres }}</td>
-                                                <td>{{ estudiante.primer_apellido }} {{
-                                                    estudiante.segundo_apellido }}</td>
-                                                <td>{{ estudiante.ci }}</td>
-                                                <td>{{ estudiante.fecha_nacimiento }}</td>
-                                                <td>{{ estudiante.genero }}</td>
-                                                <td>{{ estudiante.direccion }}</td>
-                                                <td>{{ estudiante.celular }}</td>
-                                                <td>{{ estudiante.grado }}</td>
+                                                <td>{{ chofer.nombres }}</td>
+                                                <td>{{ chofer.primer_apellido }} {{ chofer.segundo_apellido }}</td>
+                                                <td>{{ chofer.ci }}</td>
+                                                <td>{{ chofer.fecha_nacimiento }}</td>
+                                                <td>{{ chofer.genero }}</td>
+                                                <td>{{ chofer.direccion }}</td>
+                                                <td>{{ chofer.cel}}</td>
+                                                <td>{{ chofer.pin }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -73,18 +72,19 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            estudiantes: [],
+            choferes: [],
         };
     },
     async created() {
         try {
             const token = localStorage.getItem('token');
-            axios.get("/api/listar-estudiantes", {
+            axios.get("/api/listar-chofer", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }).then((response) => {
-                this.estudiantes = response.data.estudiantes;
+                this.choferes = response.data.listaChoferes;
+                console.log(response.data.listaChoferes);
             });
 
         } catch (error) {
@@ -94,15 +94,15 @@ export default {
         }
     },
     methods: {
-        async eliminarEstudiante(id_persona) {
+        async eliminarChofer(id_persona) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`/api/eliminar-estudiantes/${id_persona}`, {
+                await axios.delete(`/api/eliminar-chofer/${id_persona}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                this.estudiantes = this.estudiantes.filter(est => est.id_persona !== id_persona);
+                this.choferes = this.choferes.filter(chof => chof.id_persona !== id_persona);
             } catch (error) {
                 console.log(error);
             }
