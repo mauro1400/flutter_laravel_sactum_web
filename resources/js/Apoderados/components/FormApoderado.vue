@@ -3,17 +3,18 @@
         <section class="gradient-custom">
             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                 <div class="card-body p-4 p-md-4">
-                    <router-link :to="{ name: 'listarEstudiante' }" class="btn btn-primary"
+                    <router-link :to="{ name: 'listarApoderado' }" class="btn btn-primary"
                         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                         Volver atrás</router-link>
                     <hr>
-                    <h3>Ingresar Estudiante</h3>
+                    <h3>Ingresar Apoderado</h3>
                     <hr>
                     <!-- Alerta de Actualización -->
                     <div v-if="showAlert" class="alert alert-info" role="alert">
                         Registro Insertado con éxito! Redirigiendo en {{ countDown }} segundos.
                     </div>
                     <form @submit.prevent="submitForm">
+                        
                         <div class="row">
                             <div class="col-md-4 mb-4">
                                 <label class="form-label" for="p_nombres">Nombres</label>
@@ -42,10 +43,20 @@
                             </div>
                             <div class="col-md-4 mb-4">
                                 <label class="form-label select-label" for="p_genero">Género</label>
-                                <select class="select form-control-sm" id="p_genero" v-model="p_genero">
-                                    <option value="0">Femenino</option>
-                                    <option value="1">Masculino</option>
-                                </select>
+                                <div class="form-check">
+                                    <input v-model="p_genero" class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Femenino
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input v-model="p_genero" class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Masculino
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -61,11 +72,16 @@
                                 <input class="form-control form-control-sm" type="text" id="p_celular" v-model="p_celular">
                             </div>
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_grado">Grado</label>
-                                <input class="form-control form-control-sm" type="text" id="p_grado" v-model="p_grado">
+                                <label class="form-label" for="p_pin">Pin</label>
+                                <input class="form-control form-control-sm" type="text" id="p_pin" v-model="p_pin">
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <label class="form-label" for="p_nombres">Estudiante</label>
+                                <input class="form-control form-control-sm" type="text" id="p_nombres" v-model="p_id_estudiante">
+                            </div>
+                        </div>
                         <div class="col-md-12 mb-4">
                             <button type="submit" class="btn btn-primary"
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Enviar</button>
@@ -93,7 +109,8 @@ export default {
             p_genero: '',
             p_direccion: '',
             p_celular: '',
-            p_grado: '',
+            p_pin: '',
+            p_id_estudiante:'',
             csrfToken: null,
             showAlert: false, // muestra la alerta de actualización
             countDown: 2, // Agregando variable para mensaje de éxito
@@ -109,7 +126,7 @@ export default {
     methods: {
         async submitForm() {
             try {
-                const response = await axios.post('/api/insertar-persona-estudiante', {
+                const response = await axios.post('/api/insertar-persona-apoderado', {
                     p_nombres: this.p_nombres,
                     p_primer_apellido: this.p_primer_apellido,
                     p_segundo_apellido: this.p_segundo_apellido,
@@ -118,7 +135,8 @@ export default {
                     p_genero: this.p_genero,
                     p_direccion: this.p_direccion,
                     p_celular: this.p_celular,
-                    p_grado: this.p_grado,
+                    p_pin: this.p_pin,
+                    p_id_estudiante:this.p_id_estudiante,
                 }, {
                     headers: {
                         'X-CSRF-TOKEN': this.csrfToken,
@@ -131,7 +149,7 @@ export default {
                     if (this.countDown > 0) {
                         this.countDown--; // decrementa el contador
                     } else {
-                        this.$router.push({ name: 'listarEstudiante' });
+                        this.$router.push({ name: 'listarApoderado' });
                         location.reload()
                     }
                 }, 1000);

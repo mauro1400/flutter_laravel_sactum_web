@@ -5301,6 +5301,48 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/Apoderados/router/index.js":
+/*!*************************************************!*\
+  !*** ./resources/js/Apoderados/router/index.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
+  name: 'listarApoderado',
+  path: '/listarApoderado',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_Apoderados_components_ListarApoderado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/ListarApoderado.vue */ "./resources/js/Apoderados/components/ListarApoderado.vue"));
+  },
+  meta: {
+    title: 'listarApoderado'
+  }
+}, {
+  name: 'editarApoderado',
+  path: '/editarApoderado',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_Apoderados_components_EditarApoderado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/EditarApoderado.vue */ "./resources/js/Apoderados/components/EditarApoderado.vue"));
+  },
+  meta: {
+    title: 'editarApoderado'
+  }
+}, {
+  name: 'ingresarApoderado',
+  path: '/ingresarApoderado',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_Apoderados_components_FormApoderado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/FormApoderado.vue */ "./resources/js/Apoderados/components/FormApoderado.vue"));
+  },
+  meta: {
+    title: 'ingresarApoderado'
+  }
+}]);
+
+/***/ }),
+
 /***/ "./resources/js/Choferes/router/index.js":
 /*!***********************************************!*\
   !*** ./resources/js/Choferes/router/index.js ***!
@@ -5480,12 +5522,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _auth_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auth/router */ "./resources/js/auth/router/index.js");
 /* harmony import */ var _usuario_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../usuario/router */ "./resources/js/usuario/router/index.js");
 /* harmony import */ var _Estudiante_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Estudiante/router */ "./resources/js/Estudiante/router/index.js");
 /* harmony import */ var _Choferes_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Choferes/router */ "./resources/js/Choferes/router/index.js");
+/* harmony import */ var _Apoderados_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Apoderados/router */ "./resources/js/Apoderados/router/index.js");
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 
 
@@ -5493,7 +5536,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_4__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var home = [{
   name: 'home',
   path: '/',
@@ -5505,7 +5549,7 @@ var home = [{
     requiresAuth: true,
     middleware: 'auth'
   },
-  children: _auth_router__WEBPACK_IMPORTED_MODULE_0__["default"].concat(_Estudiante_router__WEBPACK_IMPORTED_MODULE_2__["default"], _usuario_router__WEBPACK_IMPORTED_MODULE_1__["default"], _Choferes_router__WEBPACK_IMPORTED_MODULE_3__["default"])
+  children: _auth_router__WEBPACK_IMPORTED_MODULE_0__["default"].concat(_Estudiante_router__WEBPACK_IMPORTED_MODULE_2__["default"], _usuario_router__WEBPACK_IMPORTED_MODULE_1__["default"], _Choferes_router__WEBPACK_IMPORTED_MODULE_3__["default"], _Apoderados_router__WEBPACK_IMPORTED_MODULE_4__["default"])
 }, {
   name: 'notfoundcomponent',
   path: '*',
@@ -5517,7 +5561,7 @@ var home = [{
   }
 }];
 var routes = _auth_router__WEBPACK_IMPORTED_MODULE_0__["default"].concat(home);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]({
   mode: 'history',
   routes: routes
 });
@@ -43668,7 +43712,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
 /******/ 			if (chunkId === "Home") return "js/Home.js";
-/******/ 			if ({"resources_js_auth_components_LoginForm_vue":1,"resources_js_usuario_components_UserInfo_vue":1,"resources_js_Estudiante_components_ListarEstudiante_vue":1,"resources_js_Estudiante_components_EditarEstudiante_vue":1,"resources_js_Estudiante_components_FormEstudiante_vue":1,"resources_js_Choferes_components_ListarChofer_vue":1,"resources_js_Choferes_components_EditarChofer_vue":1,"resources_js_Choferes_components_FormChofer_vue":1,"Navbar":1,"Sidebar":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_auth_components_LoginForm_vue":1,"resources_js_usuario_components_UserInfo_vue":1,"resources_js_Estudiante_components_ListarEstudiante_vue":1,"resources_js_Estudiante_components_EditarEstudiante_vue":1,"resources_js_Estudiante_components_FormEstudiante_vue":1,"resources_js_Choferes_components_ListarChofer_vue":1,"resources_js_Choferes_components_EditarChofer_vue":1,"resources_js_Choferes_components_FormChofer_vue":1,"resources_js_Apoderados_components_ListarApoderado_vue":1,"resources_js_Apoderados_components_EditarApoderado_vue":1,"resources_js_Apoderados_components_FormApoderado_vue":1,"Navbar":1,"Sidebar":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -30,6 +30,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -162,6 +166,21 @@ var render = function () {
                 attrs: { to: { name: "listarChofer" } },
               },
               [_c("span", [_vm._v("Choferes")])]
+            ),
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "nav-link text-white",
+                attrs: { to: { name: "listarApoderado" } },
+              },
+              [_c("span", [_vm._v("Apoderados")])]
             ),
           ],
           1

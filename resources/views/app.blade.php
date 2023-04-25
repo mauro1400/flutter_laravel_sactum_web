@@ -27,6 +27,9 @@
             width: 100%;
         }
     }
+    table{
+       font-size: 13px; 
+    }
 
     .gradient-custom {
         background: #6a11cb;

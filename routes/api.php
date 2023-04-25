@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Apoderado\PersonaApoderadoController;
 use App\Http\Controllers\Estudiante\PersonaEstudianteController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Chofer\PersonaChoferController;
@@ -27,6 +28,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/eliminar-chofer/{id_persona}', [PersonaChoferController::class, 'eliminarPersonaChofer']);
     Route::get('/editar-chofer/{id_persona}', [PersonaChoferController::class, 'editarPersonaChofer']);
     Route::post('/actualizar-chofer/{id_persona}', [PersonaChoferController::class, 'actualizarPersonaChofer']);
+    //Apoderado
+    Route::get('/listar-apoderado', [PersonaApoderadoController::class, 'index']);
+    Route::post('/insertar-persona-apoderado', [PersonaApoderadoController::class, 'insertarPersonaApoderado']);
+    Route::delete('/eliminar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'eliminarPersonaApoderado']);
+    Route::get('/editar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'editarPersonaApoderado']);
+    Route::post('/actualizar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'actualizarPersonaApoderado']);
 
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 });

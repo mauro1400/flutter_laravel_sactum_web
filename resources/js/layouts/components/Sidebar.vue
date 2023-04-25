@@ -14,6 +14,10 @@
                 <router-link :to="{ name: 'listarChofer' }"
                     class="nav-link text-white"><span>Choferes</span></router-link>
             </li>
+            <li>
+                <router-link :to="{ name: 'listarApoderado' }"
+                    class="nav-link text-white"><span>Apoderados</span></router-link>
+            </li>
         </ul>
     </div>
 </template>

@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Apoderado;
 
 use App\Http\Controllers\Controller;
 use App\Models\Apoderado;
+use App\Models\Persona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PersonaApoderadoController extends Controller
 {
-       public function index()
+    public function index()
     {
-        $listaChoferes = Apoderado::join('personas', 'personas.id_persona', '=', 'apoderado.id_persona')
+        $listaApoderados = Apoderado::join('personas', 'personas.id_persona', '=', 'apoderados.id_persona')
             ->select(
+                'apoderados.id_estudiante',
                 'personas.id_persona',
                 'personas.nombres',
                 'personas.primer_apellido',
@@ -21,69 +24,21 @@ class PersonaApoderadoController extends Controller
                 'personas.genero',
                 'personas.direccion',
                 'personas.celular as cel',
-                'chofers.celular',
-                'chofers.pin'
+                'apoderados.celular',
+                'apoderados.pin'
             )
             ->get();
         return response()->json([
-            'listaChoferes' => $listaChoferes
+            'listaApoderados' => $listaApoderados
         ]);
     }
-
-    public function insertarPersonaChofer(Request $request)
-    {
-        try {
-            DB::beginTransaction(); // Validar los datos recibidos
-            /*$request->validate([
-                'nombres' => 'required',
-                'primer_apellido' => 'required',
-                'ci' => 'required|unique:personas',
-                'fecha_nacimiento' => 'required|date',
-                'genero' => 'required|boolean',
-                'direccion' => 'required',
-                'celular' => 'required|unique:personas|unique:choferes',
-                'pin' => 'required'
-            ]);*/
-
-            // Insertar en la tabla personas
-            $persona = new Persona();
-            $persona->nombres = $request->input('p_nombres');
-            $persona->primer_apellido = $request->input('p_primer_apellido');
-            $persona->segundo_apellido = $request->input('p_segundo_apellido');
-            $persona->ci = $request->input('p_ci');
-            $persona->fecha_nacimiento = $request->input('p_fecha_nacimiento');
-            $persona->genero = $request->input('p_genero');
-            $persona->direccion = $request->input('p_direccion');
-            $persona->celular = $request->input('p_celular');
-            $persona->save();
-
-            // Insertar en la tabla choferes
-            $chofer = new Chofer();
-            $chofer->id_persona = $persona->id_persona;
-            $chofer->pin = $request->input('p_pin');
-            $chofer->save();
-            DB::commit();
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Persona y Chofer insertados con éxito. ID de persona: ' . $persona->id_persona . ', ID de Chofer: ' . $chofer->id_chofer,
-            ]);
-        } catch (\Throwable $th) {
-            DB::rollback();
-
-            return response()->json([
-                'success' => false,
-                'message' => $th->getMessage(),
-            ]);
-        }
-    }
-    public function eliminarPersonaChofer($id_persona)
+    public function eliminarPersonaApoderado($id_persona)
     {
         try {
             DB::beginTransaction();
 
-            $choferes = Chofer::where('id_persona', $id_persona)->first();
-            $choferes->delete();
+            $apoderado = Apoderado::where('id_persona', $id_persona)->first();
+            $apoderado->delete();
 
             $persona = Persona::where('id_persona', $id_persona)->first();
             $persona->delete();
@@ -104,65 +59,13 @@ class PersonaApoderadoController extends Controller
         }
     }
 
-    public function editarPersonaChofer($id_persona)
-    {
-        try {
-            DB::beginTransaction();
-            // Buscar al estudiante
-            $chofer = Chofer::join('personas', 'personas.id_persona', '=', 'chofers.id_persona')
-                ->select(
-                    'personas.nombres',
-                    'personas.primer_apellido',
-                    'personas.segundo_apellido',
-                    'personas.ci',
-                    'personas.fecha_nacimiento',
-                    'personas.genero',
-                    'personas.direccion',
-                    'personas.celular as cel',
-                    'chofers.celular',
-                    'chofers.pin'
-                )
-                ->where('personas.id_persona', $id_persona)
-                ->first();
-            DB::commit();
-
-            if (!$chofer) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Estudiante no encontrado.',
-                ]);
-            }
-
-            return response()->json([
-                'success' => true,
-                'chofer' => $chofer,
-            ]);
-        } catch (\Throwable $th) {
-            DB::rollback();
-
-            return response()->json([
-                'success' => false,
-                'message' => $th->getMessage(),
-            ]);
-        }
-    }
-    public function actualizarPersonaChofer(Request $request, $id_persona)
+    public function insertarPersonaApoderado(Request $request)
     {
         try {
             DB::beginTransaction();
 
-            // Buscar al chofer a actualizar
-            $chofer = Chofer::where('id_persona', $id_persona)->first();
-            if (!$chofer) {
-                throw new \Exception('Chofer no encontrado.');
-            }
-
-            // Actualizar datos de la persona
-            $persona = Persona::where('id_persona', $id_persona)->first();
-            if (!$persona) {
-                throw new \Exception('Persona no encontrada.');
-            }
             // Insertar en la tabla personas
+            $persona = new Persona();
             $persona->nombres = $request->input('nombres');
             $persona->primer_apellido = $request->input('primer_apellido');
             $persona->segundo_apellido = $request->input('segundo_apellido');
@@ -173,10 +76,104 @@ class PersonaApoderadoController extends Controller
             $persona->celular = $request->input('celular');
             $persona->save();
 
-            // Actualizar datos del choferes
-            $chofer->celular = $request->input('celular');
-            $chofer->pin = $request->input('pin');
-            $chofer->save();
+            // Insertar en la tabla choferes
+            $apoderado = new Apoderado();
+            $apoderado->id_persona = $persona->id_persona;
+            $apoderado->pin = $request->input('pin');
+            $apoderado->id_estudiante = $request->input('id_estudiante');
+            $apoderado->save();
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Persona y Chofer insertados con éxito. ID de persona: ' . $persona->id_persona . ', ID de Chofer: ' . $apoderado->id_chofer,
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function editarPersonaApoderado($id_persona)
+    {
+        try {
+            DB::beginTransaction();
+            // Buscar al estudiante
+            $apoderado = Apoderado::join('personas', 'personas.id_persona', '=', 'apoderados.id_persona')
+                ->select(
+                    'apoderados.id_estudiante',
+                    'personas.id_persona',
+                    'personas.nombres',
+                    'personas.primer_apellido',
+                    'personas.segundo_apellido',
+                    'personas.ci',
+                    'personas.fecha_nacimiento',
+                    'personas.genero',
+                    'personas.direccion',
+                    'personas.celular as cel',
+                    'apoderados.celular',
+                    'apoderados.pin'
+                )
+                ->where('personas.id_persona', $id_persona)
+                ->first();
+            DB::commit();
+
+            if (!$apoderado) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Apoderado no encontrado.',
+                ]);
+            }
+
+            return response()->json([
+                'success' => true,
+                'apoderado' => $apoderado,
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function actualizarPersonaApoderado(Request $request, $id_persona)
+    {
+        try {
+            DB::beginTransaction();
+
+            // Buscar al chofer a actualizar
+            $apoderado = Apoderado::where('id_persona', $id_persona)->first();
+            if (!$apoderado) {
+                throw new \Exception('Apoderado no encontrado.');
+            }
+
+            // Actualizar datos de la persona
+            $persona = Persona::where('id_persona', $id_persona)->first();
+            if (!$persona) {
+                throw new \Exception('Persona no encontrada.');
+            }
+            
+            $persona->nombres = $request->input('nombres');
+            $persona->primer_apellido = $request->input('primer_apellido');
+            $persona->segundo_apellido = $request->input('segundo_apellido');
+            $persona->ci = $request->input('ci');
+            $persona->fecha_nacimiento = $request->input('fecha_nacimiento');
+            $persona->genero = $request->input('genero');
+            $persona->direccion = $request->input('direccion');
+            $persona->celular = $request->input('celular');
+            $persona->save();
+            
+            $apoderado->id_persona = $persona->id_persona;
+            $apoderado->pin = $request->input('pin');
+            $apoderado->id_estudiante = $request->input('id_estudiante');
+            $apoderado->save();
 
             DB::commit();
 
@@ -193,5 +190,4 @@ class PersonaApoderadoController extends Controller
             ]);
         }
     }
-
 }
