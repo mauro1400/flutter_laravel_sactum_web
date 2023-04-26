@@ -40,6 +40,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
@@ -145,9 +146,7 @@ var render = function () {
       _c("div", { staticClass: "container-fluid" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v("\n            TRANSPORTE\n        "),
-        ]),
+        _vm._m(1),
         _vm._v(" "),
         _c("ul", { staticClass: "navbar-nav ms-auto d-flex flex-row" }, [
           _vm.isLoggedIn
@@ -192,6 +191,26 @@ var staticRenderFns = [
       },
       [_c("i", { staticClass: "fas fa-bars" })]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "navbar-brand" }, [
+      _c("img", {
+        staticClass: "img-fluid",
+        staticStyle: {
+          "border-radius": "1rem",
+          width: "50px",
+          height: "50px",
+          "object-fit": "cover",
+        },
+        attrs: {
+          src: "https://lasallelpt.edu.bo/images/logocolegio.jpg",
+          alt: "Descripción de la imagen",
+        },
+      }),
+    ])
   },
 ]
 render._withStripped = true

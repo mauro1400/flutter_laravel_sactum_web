@@ -10,8 +10,9 @@
             </button>
 
             <!-- Brand -->
-            <a class="navbar-brand" href="#">
-                TRANSPORTE
+            <a class="navbar-brand">
+                <img src="https://lasallelpt.edu.bo/images/logocolegio.jpg" alt="Descripción de la imagen" class="img-fluid"
+        style="border-radius: 1rem; width: 50px; height: 50px; object-fit: cover;">
             </a>
 
             <!-- Right links -->
