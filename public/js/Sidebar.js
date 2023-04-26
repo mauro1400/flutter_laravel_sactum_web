@@ -34,6 +34,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -167,6 +172,23 @@ var render = function () {
               },
               [_c("span", [_vm._v("Choferes")])]
             ),
+            _vm._v(" "),
+            _c("ul", [
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link text-white",
+                      attrs: { to: { name: "listarTransporte" } },
+                    },
+                    [_c("span", [_vm._v("Trasporte")])]
+                  ),
+                ],
+                1
+              ),
+            ]),
           ],
           1
         ),

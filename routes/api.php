@@ -4,6 +4,7 @@ use App\Http\Controllers\Apoderado\PersonaApoderadoController;
 use App\Http\Controllers\Estudiante\PersonaEstudianteController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Chofer\PersonaChoferController;
+use App\Http\Controllers\Transporte\TransporteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/eliminar-estudiantes/{id_persona}', [PersonaEstudianteController::class, 'eliminarPersonaEstudiante']);
     Route::get('/editar-estudiante/{id_persona}', [PersonaEstudianteController::class, 'editarPersonaEstudiante']);
     Route::post('/actualizar-estudiantes/{id_persona}', [PersonaEstudianteController::class, 'actualizarPersonaEstudiante']);
-    
     //chofer
     Route::get('/listar-chofer', [PersonaChoferController::class, 'index']);
     Route::post('/insertar-persona-chofer', [PersonaChoferController::class, 'insertarPersonaChofer']);
@@ -34,6 +34,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/eliminar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'eliminarPersonaApoderado']);
     Route::get('/editar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'editarPersonaApoderado']);
     Route::post('/actualizar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'actualizarPersonaApoderado']);
+    //transporte
+    Route::get('/listar-transporte', [TransporteController::class, 'index']);
+    Route::post('/insertar-transporte', [TransporteController::class, 'insertarTransporte']);
+    Route::delete('/eliminar-transporte/{id_transporte}', [TransporteController::class, 'eliminarTransporte']);
+    Route::get('/editar-transporte/{id_transporte}', [TransporteController::class, 'editarTransporte']);
+    Route::post('/actualizar-transporte/{id_transporte}', [TransporteController::class, 'actualizarTransporte']);
 
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 });

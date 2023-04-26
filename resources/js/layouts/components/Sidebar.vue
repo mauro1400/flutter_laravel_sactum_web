@@ -11,8 +11,13 @@
                     class="nav-link text-white"><span>Estudiantes</span></router-link>
             </li>
             <li>
-                <router-link :to="{ name: 'listarChofer' }"
-                    class="nav-link text-white"><span>Choferes</span></router-link>
+                <router-link :to="{ name: 'listarChofer' }" class="nav-link text-white"><span>Choferes</span></router-link>
+                <ul>
+                    <li>
+                        <router-link :to="{name : 'listarTransporte'}"
+                            class="nav-link text-white"><span>Trasporte</span></router-link>
+                    </li>
+                </ul>
             </li>
             <li>
                 <router-link :to="{ name: 'listarApoderado' }"

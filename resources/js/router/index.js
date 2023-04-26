@@ -5,6 +5,7 @@ import usuario from '../usuario/router';
 import estudiante from '../Estudiante/router'
 import chofer from '../Choferes/router'
 import apoderado from '../Apoderados/router'
+import transporte from '../Transporte/router'
 Vue.use(VueRouter)
 
 const home = [
@@ -17,7 +18,7 @@ const home = [
       requiresAuth: true,
       middleware: 'auth',
     },
-    children: auth.concat(estudiante,usuario,chofer,apoderado)
+    children: auth.concat(estudiante,usuario,chofer,apoderado,transporte)
   }, {
     name: 'notfoundcomponent',
     path: '*',

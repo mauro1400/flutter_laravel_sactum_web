@@ -168,7 +168,7 @@ export default {
                             this.countDown--; // decrementa el contador
                         } else {
                             this.$router.push({ name: 'listarApoderado' });
-                            //location.reload() // redirecciona
+                            location.reload() // redirecciona
                         }
                     }, 1000); // actualiza el contador cada segundo
                 });
