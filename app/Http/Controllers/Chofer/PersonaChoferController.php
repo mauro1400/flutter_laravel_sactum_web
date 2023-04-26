@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Chofer;
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Controller;
 use App\Models\Chofer;
 use App\Models\Persona;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PersonaChoferController extends Controller
 {
@@ -35,19 +38,7 @@ class PersonaChoferController extends Controller
     public function insertarPersonaChofer(Request $request)
     {
         try {
-            DB::beginTransaction(); // Validar los datos recibidos
-            /*$request->validate([
-                'nombres' => 'required',
-                'primer_apellido' => 'required',
-                'ci' => 'required|unique:personas',
-                'fecha_nacimiento' => 'required|date',
-                'genero' => 'required|boolean',
-                'direccion' => 'required',
-                'celular' => 'required|unique:personas|unique:choferes',
-                'pin' => 'required'
-            ]);*/
-
-            // Insertar en la tabla personas
+            DB::beginTransaction();
             $persona = new Persona();
             $persona->nombres = $request->input('p_nombres');
             $persona->primer_apellido = $request->input('p_primer_apellido');
@@ -66,9 +57,17 @@ class PersonaChoferController extends Controller
             $chofer->save();
             DB::commit();
 
+            $user = User::create([
+                'name' => $persona->nombres,
+                'email' => $persona->ci . "@transporte.com",
+                'password' => Hash::make("123"),
+                'id_persona' => $persona->id_persona,
+            ]);
+
             return response()->json([
                 'success' => true,
                 'message' => 'Persona y Chofer insertados con éxito. ID de persona: ' . $persona->id_persona . ', ID de Chofer: ' . $chofer->id_chofer,
+                'user' => $user,
             ]);
         } catch (\Throwable $th) {
             DB::rollback();
