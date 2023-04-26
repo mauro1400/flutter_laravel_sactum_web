@@ -1,21 +1,28 @@
 <template>
   <div class="container-fluid">
-
-      <h2 class="mb-4">***Bienvenido***</h2>
-      <div v-if="user" class="card mb-4">
+    <div v-if="user">
+      <div class="card text-center">
+        <div class="card-header">
+          Usuario
+        </div>
         <div class="card-body">
-          <p class="card-text">Nombre: {{ user.name }}</p>
-          <p class="card-text">Correo electrónico: {{ user.email }}</p>
+          <h5 class="card-title">Bienvenido</h5>
+          <p class="card-text"><b>Nombre:</b> {{ user.name }}</p>
+          <p class="card-text"><b>Correo electrónico:</b> {{ user.email }}</p>
           <button @click="logout" class="btn btn-primary">Cerrar sesión</button>
         </div>
+        <div class="card-footer text-body-secondary">
+          2023
+        </div>
       </div>
-      <div v-else-if="loading" class="alert alert-info" role="alert">
-        Cargando datos de usuario...
-      </div>
-      <div v-else class="alert alert-warning" role="alert">
-        Debe iniciar sesión para ver esta página.
-      </div>
-      <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
+    </div>
+    <div v-else-if="loading" class="alert alert-info" role="alert">
+      Cargando datos de usuario...
+    </div>
+    <div v-else class="alert alert-warning" role="alert">
+      Debe iniciar sesión para ver esta página.
+    </div>
+    <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
   </div>
 </template>
 

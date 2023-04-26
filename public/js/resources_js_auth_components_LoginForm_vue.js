@@ -49,6 +49,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -178,147 +185,189 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "vh-100 gradient-custom" }, [
-    _c("div", { staticClass: "container h-100" }, [
+  return _c(
+    "div",
+    { staticClass: "row", staticStyle: { "padding-top": "30px" } },
+    [
+      _c("div", { staticClass: "col-md-1" }),
+      _vm._v(" "),
       _c(
         "div",
         {
-          staticClass:
-            "row d-flex justify-content-center align-items-center h-100",
+          staticClass: "col-md-4",
+          staticStyle: { "padding-left": "0px", "padding-right": "0px" },
         },
         [
-          _c("div", { staticClass: "col-12 col-md-8 col-lg-6 col-xl-5" }, [
-            _c(
-              "div",
-              {
-                staticClass: "card bg-dark text-white",
-                staticStyle: { "border-radius": "1rem" },
+          _c(
+            "div",
+            {
+              staticClass: "card bg-dark text-white",
+              staticStyle: {
+                "border-top-left-radius": "1rem",
+                "border-bottom-left-radius": "1rem",
               },
-              [
-                _c("div", { staticClass: "card-body text-center" }, [
-                  _c("div", { staticClass: "mb-md-5 mt-md-4 pb-5" }, [
-                    _c("h2", { staticClass: "fw-bold mb-2 text-uppercase" }, [
-                      _vm._v("Login"),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-white-50 mb-5" }, [
-                      _vm._v("¡Por favor, introduce tu usuario y contraseña!"),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "form",
-                      {
-                        on: {
-                          submit: function ($event) {
-                            $event.preventDefault()
-                            return _vm.login.apply(null, arguments)
-                          },
+            },
+            [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "mb-md-5 mt-md-4 pb-5" }, [
+                  _c("h2", { staticClass: "fw-bold mb-2 text-uppercase" }, [
+                    _vm._v("Acceso"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-white-50 mb-5" }, [
+                    _vm._v("¡Por favor, introduce tu usuario y contraseña!"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function ($event) {
+                          $event.preventDefault()
+                          return _vm.login.apply(null, arguments)
                         },
                       },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "form-outline form-white mb-4" },
-                          [
-                            _c(
-                              "label",
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "form-outline form-white mb-4" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label",
+                              attrs: { for: "email" },
+                            },
+                            [_vm._v("Email:")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
                               {
-                                staticClass: "form-label",
-                                attrs: { for: "email" },
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.email,
+                                expression: "form.email",
                               },
-                              [_vm._v("Email:")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.email,
-                                  expression: "form.email",
-                                },
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "email", id: "email" },
-                              domProps: { value: _vm.form.email },
-                              on: {
-                                input: function ($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "email",
-                                    $event.target.value
-                                  )
-                                },
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "email", id: "email" },
+                            domProps: { value: _vm.form.email },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "email", $event.target.value)
                               },
-                            }),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-outline form-white mb-4" },
-                          [
-                            _c(
-                              "label",
+                            },
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-outline form-white mb-4" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label",
+                              attrs: { for: "password" },
+                            },
+                            [_vm._v("Contraseña:")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
                               {
-                                staticClass: "form-label",
-                                attrs: { for: "password" },
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.password,
+                                expression: "form.password",
                               },
-                              [_vm._v("Contraseña:")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.password,
-                                  expression: "form.password",
-                                },
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "password", id: "password" },
-                              domProps: { value: _vm.form.password },
-                              on: {
-                                input: function ($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "password",
-                                    $event.target.value
-                                  )
-                                },
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "password", id: "password" },
+                            domProps: { value: _vm.form.password },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "password",
+                                  $event.target.value
+                                )
                               },
-                            }),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-outline-light btn-lg px-5",
-                            attrs: { type: "submit" },
-                          },
-                          [_vm._v("Iniciar Sesion")]
-                        ),
-                      ]
-                    ),
-                  ]),
+                            },
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(0),
+                    ]
+                  ),
                 ]),
-              ]
-            ),
-          ]),
+              ]),
+            ]
+          ),
         ]
       ),
-    ]),
-  ])
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-1" }),
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-light btn-lg px-5",
+          attrs: { type: "submit" },
+        },
+        [_vm._v("Iniciar Sesion")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "col-md-4",
+        staticStyle: { "padding-left": "0px", "padding-right": "0px" },
+      },
+      [
+        _c("img", {
+          staticClass: "img-fluid",
+          staticStyle: {
+            "border-top-right-radius": "1rem",
+            "border-bottom-right-radius": "1rem",
+            width: "100%",
+            height: "100%",
+            "object-fit": "cover",
+          },
+          attrs: {
+            src: "https://lasallelpt.edu.bo/images/colegio_la_salle.jpg",
+            alt: "Descripción de la imagen",
+          },
+        }),
+      ]
+    )
+  },
+]
 render._withStripped = true
 
 
