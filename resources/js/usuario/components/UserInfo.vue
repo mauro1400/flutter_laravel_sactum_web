@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" style="padding-top: 21px;">
     <div v-if="user">
       <div class="card text-center">
         <div class="card-header">
