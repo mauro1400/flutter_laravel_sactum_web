@@ -40,6 +40,8 @@
 
   
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -53,7 +55,9 @@ export default {
     async login() {
       try {
         const response = await axios.post('/api/login', this.form)
-        localStorage.setItem('token', response.data.access_token)
+        localStorage.setItem('token', response.data.token)
+        console.log(response.data)
+        
         this.$router.push({ name: 'home' })
       } catch (error) {
         console.error(error)
@@ -62,4 +66,5 @@ export default {
   }
 }
 </script>
+
   

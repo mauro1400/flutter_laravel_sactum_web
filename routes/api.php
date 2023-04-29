@@ -5,6 +5,7 @@ use App\Http\Controllers\Estudiante\PersonaEstudianteController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Chofer\PersonaChoferController;
 use App\Http\Controllers\Transporte\TransporteController;
+use App\Http\Controllers\Usuario\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    //Route::get('/informacion-usuario/{id}', [UsuarioController::class, 'informacionUsuario']);
     //estudiantes
     Route::get('/listar-estudiantes', [PersonaEstudianteController::class, 'index']);
     Route::post('/insertar-persona-estudiante', [PersonaEstudianteController::class, 'insertarPersonaEstudiante']);

@@ -9,55 +9,47 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
-    
-        public function register(Request $request)
-    {/*
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed',
+    public function register(Request $request)
+    {
+        /*$request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
         ]);*/
 
-        $user = User::create([
+        $userData = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
-
-        return response()->json([
+        ];
+        $user = User::create($userData);
+        $token = $user->createToken('appToken')->plainTextToken;
+        return response([
             'user' => $user,
-            'message' => 'Usuario registrado',
-        ]);
+            'token' => $token,
+        ], 201);
     }
 
     public function login(Request $request)
-    {/*
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean',
+    {
+        /*$request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
         ]);*/
-
-        $credentials = request(['email', 'password']);
-
-        if (!Auth::attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        $user = User::whereEmail($request->email)->first();
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response(['message' => 'Credenciales Invalidas'], 402);
         }
-
-        $user = $request->user();
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ]);
+        $token = $user->createToken('appToken')->plainTextToken;
+        return response([
+            'user' => $user,
+            'token' => $token,
+        ], 200);
     }
 
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-
-        return response()->json(['message' => 'Logged out']);
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(['message' => 'Cesion cerrada'], 200);
     }
 }

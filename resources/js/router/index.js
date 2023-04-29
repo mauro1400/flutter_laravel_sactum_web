@@ -10,8 +10,12 @@ Vue.use(VueRouter)
 
 const home = [
   {
+    path: '',
+    redirect: '/login'
+  },
+  {
     name: 'home',
-    path: '/',
+    path: '/home',
     component: () => import(/* webpackChunkName: "Home" */  '../Home.vue'),
     meta: {
       title: 'Inicio',
