@@ -4,6 +4,7 @@ use App\Http\Controllers\Apoderado\PersonaApoderadoController;
 use App\Http\Controllers\Estudiante\PersonaEstudianteController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Chofer\PersonaChoferController;
+use App\Http\Controllers\RegistroGps\RegistroGpsController;
 use App\Http\Controllers\Transporte\TransporteController;
 use App\Http\Controllers\Usuario\UsuarioController;
 use Illuminate\Http\Request;
@@ -11,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthenticationController::class, 'login']);
 Route::post('/register', [AuthenticationController::class, 'register']);
+
+Route::post('/ubicacion', [RegistroGpsController::class, 'registroGPS']);
+
 
 
 Route::middleware('auth:sanctum')->group(function () {

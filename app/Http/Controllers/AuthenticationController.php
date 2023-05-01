@@ -23,7 +23,7 @@ class AuthenticationController extends Controller
             'password' => Hash::make($request->password),
         ];
         $user = User::create($userData);
-        $token = $user->createToken('appToken')->plainTextToken;
+        $token = $user->createToken('token')->plainTextToken;
         return response([
             'user' => $user,
             'token' => $token,
@@ -40,7 +40,7 @@ class AuthenticationController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response(['message' => 'Credenciales Invalidas'], 402);
         }
-        $token = $user->createToken('appToken')->plainTextToken;
+        $token = $user->createToken('token')->plainTextToken;
         return response([
             'user' => $user,
             'token' => $token,
