@@ -35,7 +35,42 @@ class RegistroGpsController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Ubicacion saved successfully',
-                'data' => $gps_registro,
+                'gps_registro' => $gps_registro,
+            ], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function enviarUbicacion(Request $request)
+    {
+        try {
+
+            //$id_persona = $request->input('id_persona');
+            $id_persona = 6;
+            DB::beginTransaction();
+            $gps_registros=gps_registros::select('lat', 'lng', 'registro')
+            ->where('id_transporte', function ($query) use ($id_persona) {
+                $query->select('transportes.id_transporte')
+                    ->from('transportes')
+                    ->join('chofers', 'transportes.id_chofer', '=', 'chofers.id_chofer')
+                    ->join('personas', 'chofers.id_persona', '=', 'personas.id_persona')
+                    ->where('personas.id_persona', $id_persona);
+            })
+            ->orderByDesc('id_gps_registro')
+            ->limit(1)
+            ->get();
+        
+            
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Ubicacion Enviada',
+                'data' => $gps_registros,
             ], 200);
         } catch (\Throwable $th) {
             DB::rollback();

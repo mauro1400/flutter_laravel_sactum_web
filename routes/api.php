@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthenticationController::class, 'login']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
-Route::post('/ubicacion', [RegistroGpsController::class, 'registroGPS']);
 
+Route::post('/ubicacion', [RegistroGpsController::class, 'registroGPS']);
+Route::post('/enviarUbicacion', [RegistroGpsController::class, 'enviarUbicacion']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
