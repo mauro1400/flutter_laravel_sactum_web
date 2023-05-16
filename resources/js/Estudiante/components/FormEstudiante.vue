@@ -49,13 +49,11 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="col-md-4 mb-4">
                                 <label class="form-label" for="p_direccion">Dirección</label>
                                 <input class="form-control form-control-sm" type="text" id="p_direccion"
                                     v-model="p_direccion">
                             </div>
-
                             <div class="col-md-4 mb-4">
                                 <label class="form-label" for="p_celular">Celular</label>
                                 <input class="form-control form-control-sm" type="text" id="p_celular" v-model="p_celular">
@@ -74,8 +72,6 @@
                     </form>
                 </div>
             </div>
-
-
         </section>
     </div>
 </template>

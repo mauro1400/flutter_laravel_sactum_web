@@ -31,6 +31,7 @@ class RegistroGpsController extends Controller
             $gps_registro->registro = Carbon::now();
             $gps_registro->estado = 1;
             $gps_registro->save();
+
             DB::commit();
             return response()->json([
                 'status' => 'success',

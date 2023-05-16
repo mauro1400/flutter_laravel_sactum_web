@@ -59,7 +59,7 @@ class PersonaChoferController extends Controller
 
             $user = User::create([
                 'name' => $persona->nombres,
-                'email' => $persona->ci . "@transporte.com",
+                'email' => $persona->nombres . "@cho.com",
                 'password' => Hash::make("123"),
                 'id_persona' => $persona->id_persona,
             ]);

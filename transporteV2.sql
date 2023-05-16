@@ -1,4 +1,3 @@
-z
 DROP SEQUENCE IF EXISTS "public"."apoderados_id_apoderado_seq";
 CREATE SEQUENCE "public"."apoderados_id_apoderado_seq" 
 INCREMENT 1
@@ -7,9 +6,6 @@ MAXVALUE 2147483647
 START 1
 CACHE 1;
 
--- ----------------------------
--- Sequence structure for chofers_id_chofer_seq
--- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."chofers_id_chofer_seq";
 CREATE SEQUENCE "public"."chofers_id_chofer_seq" 
 INCREMENT 1

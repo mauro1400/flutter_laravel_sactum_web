@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Apoderado;
 use App\Http\Controllers\Controller;
 use App\Models\Apoderado;
 use App\Models\Persona;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PersonaApoderadoController extends Controller
 {
@@ -83,7 +85,12 @@ class PersonaApoderadoController extends Controller
             $apoderado->id_estudiante = $request->input('id_estudiante');
             $apoderado->save();
             DB::commit();
-
+            $user = User::create([
+                'name' => $persona->nombres,
+                'email' => $persona->nombres. "@apo.com",
+                'password' => Hash::make("123"),
+                'id_persona' => $persona->id_persona,
+            ]);
             return response()->json([
                 'success' => true,
                 'message' => 'Persona y Chofer insertados con éxito. ID de persona: ' . $persona->id_persona . ', ID de Chofer: ' . $apoderado->id_chofer,

@@ -52,7 +52,6 @@ class PersonaEstudianteController extends Controller
             $estudiante->id_persona = $persona->id_persona;
             $estudiante->grado = $request->input('p_grado');
             $estudiante->save();
-
             DB::commit();
 
             return response()->json([

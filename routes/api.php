@@ -4,6 +4,7 @@ use App\Http\Controllers\Apoderado\PersonaApoderadoController;
 use App\Http\Controllers\Estudiante\PersonaEstudianteController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Chofer\PersonaChoferController;
+use App\Http\Controllers\Estudiante\ListaEstudiantesTransporte;
 use App\Http\Controllers\RegistroGps\RegistroGpsController;
 use App\Http\Controllers\Transporte\TransporteController;
 use App\Http\Controllers\Usuario\UsuarioController;
@@ -16,7 +17,9 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 
 Route::post('/ubicacion', [RegistroGpsController::class, 'registroGPS']);
 Route::post('/enviarUbicacion', [RegistroGpsController::class, 'enviarUbicacion']);
-
+Route::post('/estudiantes-transporte', [ListaEstudiantesTransporte::class, 'DatosEstudianteTransporte']);
+Route::post('/informacionChofer', [ListaEstudiantesTransporte::class, 'DatosChoferUsuario']);
+Route::post('/llamar-lista', [ListaEstudiantesTransporte::class, 'LLamarLista']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
