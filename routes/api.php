@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthenticationController::class, 'login']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
+Route::post('/id_persona_chofer', [PersonaChoferController::class, 'id_persona_chofer']);
 
 Route::post('/ubicacion', [RegistroGpsController::class, 'registroGPS']);
 Route::post('/enviarUbicacion', [RegistroGpsController::class, 'enviarUbicacion']);
@@ -38,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/eliminar-chofer/{id_persona}', [PersonaChoferController::class, 'eliminarPersonaChofer']);
     Route::get('/editar-chofer/{id_persona}', [PersonaChoferController::class, 'editarPersonaChofer']);
     Route::post('/actualizar-chofer/{id_persona}', [PersonaChoferController::class, 'actualizarPersonaChofer']);
+    
     //Apoderado
     Route::get('/listar-apoderado', [PersonaApoderadoController::class, 'index']);
     Route::post('/insertar-persona-apoderado', [PersonaApoderadoController::class, 'insertarPersonaApoderado']);

@@ -23,7 +23,8 @@ class PersonaEstudianteController extends Controller
                 'personas.genero',
                 'personas.direccion',
                 'personas.celular',
-                'estudiantes.grado'
+                'estudiantes.grado',
+                'estudiantes.id_estudiante'
             )
             ->get();
 

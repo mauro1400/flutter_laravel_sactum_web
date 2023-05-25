@@ -52,4 +52,5 @@ class AuthenticationController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Cesion cerrada'], 200);
     }
+    
 }

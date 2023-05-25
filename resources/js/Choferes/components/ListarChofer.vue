@@ -10,7 +10,7 @@
                                     <h2 class="mb-4 text-center">Listar Choferes</h2>
                                     <hr>
                                     <div class="container">
-                                        <router-link :to="{ name: 'ingresarChofer' }" class="btn btn-primary"
+                                        <router-link :to="{ name: 'ingresarTransporte' }" class="btn btn-primary"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                             Crear Registro
                                         </router-link>
@@ -28,6 +28,7 @@
                                                 <th>Dirección</th>
                                                 <th>Celular</th>
                                                 <th>Pin</th>
+                                                <th>Transporte</th>
                                             </tr>
                                         </thead>
                                         <!-- Agregar botón "Eliminar" a la tabla -->
@@ -52,8 +53,14 @@
                                                 <td>{{ chofer.fecha_nacimiento }}</td>
                                                 <td>{{ chofer.genero }}</td>
                                                 <td>{{ chofer.direccion }}</td>
-                                                <td>{{ chofer.cel}}</td>
+                                                <td>{{ chofer.cel }}</td>
                                                 <td>{{ chofer.pin }}</td>
+                                                <td v-if="transporte.id_chofer === chofer.id_chofer"
+                                                    v-for="transporte in transportes" :key="transporte.id_transporte">
+                                                    {{transporte.modelo }} <br>
+                                                    {{transporte.placa }} <br>
+                                                    {{transporte.descripcion }} <br> 
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -72,6 +79,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            transportes: [],
             choferes: [],
         };
     },
@@ -84,7 +92,14 @@ export default {
                 }
             }).then((response) => {
                 this.choferes = response.data.listaChoferes;
-                console.log(response.data.listaChoferes);
+            });
+            axios.get("/api/listar-transporte", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((response) => {
+                this.transportes = response.data.transporte;
+                console.log(response.data.transporte);
             });
 
         } catch (error) {

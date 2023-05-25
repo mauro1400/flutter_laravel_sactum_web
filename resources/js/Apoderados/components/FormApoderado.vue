@@ -14,44 +14,44 @@
                         Registro Insertado con éxito! Redirigiendo en {{ countDown }} segundos.
                     </div>
                     <form @submit.prevent="submitForm">
-                        
+
                         <div class="row">
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_nombres">Nombres</label>
-                                <input class="form-control form-control-sm" type="text" id="p_nombres" v-model="p_nombres">
+                                <label class="form-label" for="nombres">Nombres</label>
+                                <input class="form-control form-control-sm" type="text" id="nombres" v-model="nombres">
                             </div>
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_primer_apellido">Primer Apellido</label>
-                                <input class="form-control form-control-sm" type="text" id="p_primer_apellido"
-                                    v-model="p_primer_apellido">
+                                <label class="form-label" for="primer_apellido">Primer Apellido</label>
+                                <input class="form-control form-control-sm" type="text" id="primer_apellido"
+                                    v-model="primer_apellido">
                             </div>
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_segundo_apellido">Segundo Apellido</label>
-                                <input class="form-control form-control-sm" type="text" id="p_segundo_apellido"
-                                    v-model="p_segundo_apellido">
+                                <label class="form-label" for="segundo_apellido">Segundo Apellido</label>
+                                <input class="form-control form-control-sm" type="text" id="segundo_apellido"
+                                    v-model="segundo_apellido">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_ci">CI</label>
-                                <input class="form-control form-control-sm" type="text" id="p_ci" v-model="p_ci">
+                                <label class="form-label" for="ci">CI</label>
+                                <input class="form-control form-control-sm" type="text" id="ci" v-model="ci">
                             </div>
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_fecha_nacimiento">Fecha de Nacimiento</label>
-                                <input class="form-control form-control-sm" type="date" id="p_fecha_nacimiento"
-                                    v-model="p_fecha_nacimiento">
+                                <label class="form-label" for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                <input class="form-control form-control-sm" type="date" id="fecha_nacimiento"
+                                    v-model="fecha_nacimiento">
                             </div>
                             <div class="col-md-4 mb-4">
-                                <label class="form-label select-label" for="p_genero">Género</label>
+                                <label class="form-label select-label" for="genero">Género</label>
                                 <div class="form-check">
-                                    <input v-model="p_genero" class="form-check-input" type="radio" name="flexRadioDefault"
+                                    <input v-model="genero" class="form-check-input" type="radio" name="flexRadioDefault"
                                         id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Femenino
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="p_genero" class="form-check-input" type="radio" name="flexRadioDefault"
+                                    <input v-model="genero" class="form-check-input" type="radio" name="flexRadioDefault"
                                         id="flexRadioDefault2" checked>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Masculino
@@ -62,24 +62,31 @@
                         <div class="row">
 
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_direccion">Dirección</label>
-                                <input class="form-control form-control-sm" type="text" id="p_direccion"
-                                    v-model="p_direccion">
+                                <label class="form-label" for="direccion">Dirección</label>
+                                <input class="form-control form-control-sm" type="text" id="direccion" v-model="direccion">
                             </div>
 
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_celular">Celular</label>
-                                <input class="form-control form-control-sm" type="text" id="p_celular" v-model="p_celular">
+                                <label class="form-label" for="celular">Celular</label>
+                                <input class="form-control form-control-sm" type="text" id="celular" v-model="celular">
                             </div>
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_pin">Pin</label>
-                                <input class="form-control form-control-sm" type="text" id="p_pin" v-model="p_pin">
+                                <label class="form-label" for="pin">Pin</label>
+                                <input class="form-control form-control-sm" type="text" id="pin" v-model="pin">
                             </div>
                         </div>
+                        <hr>
+                        <h6>Asignar Estudiante</h6>
+                        <hr>
                         <div class="row">
                             <div class="col-md-4 mb-4">
-                                <label class="form-label" for="p_nombres">Estudiante</label>
-                                <input class="form-control form-control-sm" type="text" id="p_nombres" v-model="p_id_estudiante">
+                                <select class="form-control form-control-sm" id="p_estudiante" v-model="id_estudiante">
+                                    <option value="">Seleccionar estudiante</option>
+                                    <option v-for="estudiante in estudiantes" :value="estudiante.id_estudiante"
+                                        :key="estudiante.id_estudiante">
+                                        {{ estudiante.nombres }}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-12 mb-4">
@@ -90,8 +97,6 @@
                     </form>
                 </div>
             </div>
-
-
         </section>
     </div>
 </template>
@@ -101,16 +106,17 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            p_nombres: '',
-            p_primer_apellido: '',
-            p_segundo_apellido: '',
-            p_ci: '',
-            p_fecha_nacimiento: '',
-            p_genero: '',
-            p_direccion: '',
-            p_celular: '',
-            p_pin: '',
-            p_id_estudiante:'',
+            estudiantes: [], // lista de estudiantes
+            nombres: '',
+            primer_apellido: '',
+            segundo_apellido: '',
+            ci: '',
+            fecha_nacimiento: '',
+            genero: '',
+            direccion: '',
+            celular: '',
+            pin: '',
+            id_estudiante: '',
             csrfToken: null,
             showAlert: false, // muestra la alerta de actualización
             countDown: 2, // Agregando variable para mensaje de éxito
@@ -122,21 +128,22 @@ export default {
         if (csrfTokenElement !== null) {
             this.csrfToken = csrfTokenElement.getAttribute('content');
         }
+        this.loadEstudiantes();
     },
     methods: {
         async submitForm() {
             try {
                 const response = await axios.post('/api/insertar-persona-apoderado', {
-                    p_nombres: this.p_nombres,
-                    p_primer_apellido: this.p_primer_apellido,
-                    p_segundo_apellido: this.p_segundo_apellido,
-                    p_ci: this.p_ci,
-                    p_fecha_nacimiento: this.p_fecha_nacimiento,
-                    p_genero: this.p_genero,
-                    p_direccion: this.p_direccion,
-                    p_celular: this.p_celular,
-                    p_pin: this.p_pin,
-                    p_id_estudiante:this.p_id_estudiante,
+                    nombres: this.nombres,
+                    primer_apellido: this.primer_apellido,
+                    segundo_apellido: this.segundo_apellido,
+                    ci: this.ci,
+                    fecha_nacimiento: this.fecha_nacimiento,
+                    genero: this.genero,
+                    direccion: this.direccion,
+                    celular: this.celular,
+                    pin: this.pin,
+                    id_estudiante: this.id_estudiante,
                 }, {
                     headers: {
                         'X-CSRF-TOKEN': this.csrfToken,
@@ -153,6 +160,19 @@ export default {
                         location.reload()
                     }
                 }, 1000);
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async loadEstudiantes() {
+            try {
+                const response = await axios.get('/api/listar-estudiantes', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+                });
+
+                this.estudiantes = response.data.estudiantes; // Asignar los estudiantes a la lista
             } catch (error) {
                 console.error(error);
             }

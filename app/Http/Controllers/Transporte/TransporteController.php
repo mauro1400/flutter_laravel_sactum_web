@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Transporte;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chofer;
+use App\Models\Persona;
 use App\Models\Transporte;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,12 +44,28 @@ class TransporteController extends Controller
     {
         try {
             DB::beginTransaction();
+            $persona = new Persona();
+            $persona->nombres = $request->input('nombres');
+            $persona->primer_apellido = $request->input('primer_apellido');
+            $persona->segundo_apellido = $request->input('segundo_apellido');
+            $persona->ci = $request->input('ci');
+            $persona->fecha_nacimiento = $request->input('fecha_nacimiento');
+            $persona->genero = $request->input('genero');
+            $persona->direccion = $request->input('direccion');
+            $persona->celular = $request->input('celular');
+            $persona->save();
+
+            // Insertar en la tabla choferes
+            $chofer = new Chofer();
+            $chofer->id_persona = $persona->id_persona;
+            $chofer->pin = $request->input('pin');
+            $chofer->save();
 
             $transporte = new Transporte();
-            $transporte->id_chofer = $request->input('id_chofer');
+            $transporte->id_chofer = $chofer->id_chofer;
             $transporte->modelo = $request->input('modelo');
             $transporte->placa = $request->input('placa');
-            $transporte->estado = $request->input('estado');
+            $transporte->estado = 1;
             $transporte->cant_persona = $request->input('cant_persona');
             $transporte->descripcion = $request->input('descripcion');
 

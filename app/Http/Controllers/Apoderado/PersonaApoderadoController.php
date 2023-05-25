@@ -87,13 +87,14 @@ class PersonaApoderadoController extends Controller
             DB::commit();
             $user = User::create([
                 'name' => $persona->nombres,
-                'email' => $persona->nombres. "@apo.com",
+                'email' => $persona->nombres . "@apo.com",
                 'password' => Hash::make("123"),
                 'id_persona' => $persona->id_persona,
             ]);
             return response()->json([
                 'success' => true,
                 'message' => 'Persona y Chofer insertados con éxito. ID de persona: ' . $persona->id_persona . ', ID de Chofer: ' . $apoderado->id_chofer,
+                'user' => $user,
             ]);
         } catch (\Throwable $th) {
             DB::rollback();
@@ -166,7 +167,7 @@ class PersonaApoderadoController extends Controller
             if (!$persona) {
                 throw new \Exception('Persona no encontrada.');
             }
-            
+
             $persona->nombres = $request->input('nombres');
             $persona->primer_apellido = $request->input('primer_apellido');
             $persona->segundo_apellido = $request->input('segundo_apellido');
@@ -176,7 +177,7 @@ class PersonaApoderadoController extends Controller
             $persona->direccion = $request->input('direccion');
             $persona->celular = $request->input('celular');
             $persona->save();
-            
+
             $apoderado->id_persona = $persona->id_persona;
             $apoderado->pin = $request->input('pin');
             $apoderado->id_estudiante = $request->input('id_estudiante');

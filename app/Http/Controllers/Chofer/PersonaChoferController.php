@@ -27,7 +27,8 @@ class PersonaChoferController extends Controller
                 'personas.direccion',
                 'personas.celular as cel',
                 'chofers.celular',
-                'chofers.pin'
+                'chofers.pin',
+                'chofers.id_chofer',
             )
             ->get();
         return response()->json([
@@ -63,7 +64,6 @@ class PersonaChoferController extends Controller
                 'password' => Hash::make("123"),
                 'id_persona' => $persona->id_persona,
             ]);
-
             return response()->json([
                 'success' => true,
                 'message' => 'Persona y Chofer insertados con éxito. ID de persona: ' . $persona->id_persona . ', ID de Chofer: ' . $chofer->id_chofer,
@@ -184,6 +184,34 @@ class PersonaChoferController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Registro actualizado con éxito.',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+    public function id_persona_chofer(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $idPersonaApoderado = $request->input('id_persona_apoderado');
+
+            $id_persona_chofer = Chofer::join('transportes as t', 'chofers.id_chofer', '=', 't.id_chofer')
+                ->join('estudiante_transportes as et', 't.id_transporte', '=', 'et.id_transporte')
+                ->join('estudiantes as e', 'et.id_estudiante', '=', 'e.id_estudiante')
+                ->join('apoderados as a', 'e.id_estudiante', '=', 'a.id_estudiante')
+                ->where('a.id_persona', $idPersonaApoderado)
+                ->select('chofers.id_persona')
+                ->first();
+            DB::commit();
+            return response()->json([
+                'success' => true,
+                'message' => 'id_persona_chofer:', $id_persona_chofer,
+                'id_persona_chofer' => $id_persona_chofer,
             ]);
         } catch (\Throwable $th) {
             DB::rollback();
