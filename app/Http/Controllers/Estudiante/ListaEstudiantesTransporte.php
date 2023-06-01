@@ -87,7 +87,13 @@ class ListaEstudiantesTransporte extends Controller
             $asistensiaEstudiante = new EstudianteAsistencia();
             $asistensiaEstudiante->id_estudiante_transporte = $request->input('id_estudiante_transporte');
             $asistensiaEstudiante->id_estado = $request->input('id_estado');
-            $asistensiaEstudiante->mensaje_padre = 0;
+            if ($asistensiaEstudiante->id_estado == 4) {
+                $asistensiaEstudiante->mensaje_padre = 'El Estudiante ha subido al transporte escolar.Ten un excelente día.';
+            } elseif ($asistensiaEstudiante->id_estado == 5) {
+                $asistensiaEstudiante->mensaje_padre = 'El Estudiante ha bajado del transporte escolar.Ten un excelente día.';
+            } else {
+                $asistensiaEstudiante->mensaje_padre = '';
+            }
             $asistensiaEstudiante->estado = 1;
             $asistensiaEstudiante->created_at = now();
             $asistensiaEstudiante->updated_at = now();
@@ -97,6 +103,33 @@ class ListaEstudiantesTransporte extends Controller
                 'status' => 'success',
                 'message' => 'Datos Chofer',
                 'asistenciaEstudiante' => $asistensiaEstudiante,
+            ], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+    public function enviar_mensaje(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $id_persona = $request->input('id_persona_apoderado');
+            $estadoMensaje = EstudianteAsistencia::select('estudiante_asistencias.id_estado', 'estudiante_asistencias.mensaje_padre')
+                ->join('estudiante_transportes', 'estudiante_asistencias.id_estudiante_transporte', '=', 'estudiante_transportes.id_estudiante_transporte')
+                ->join('apoderados', 'estudiante_transportes.id_estudiante', '=', 'apoderados.id_estudiante')
+                ->where('apoderados.id_persona', '=', $id_persona) // Replace 1 with the ID of the guardian's person
+                ->orderByDesc('estudiante_asistencias.created_at')
+                ->limit(1)
+                ->get();
+            DB::commit();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Datos',
+                'estadoMensaje' => $estadoMensaje,
             ], 200);
         } catch (\Throwable $th) {
             DB::rollback();

@@ -21,6 +21,7 @@ Route::post('/enviarUbicacion', [RegistroGpsController::class, 'enviarUbicacion'
 Route::post('/estudiantes-transporte', [ListaEstudiantesTransporte::class, 'DatosEstudianteTransporte']);
 Route::post('/informacionChofer', [ListaEstudiantesTransporte::class, 'DatosChoferUsuario']);
 Route::post('/llamar-lista', [ListaEstudiantesTransporte::class, 'LLamarLista']);
+Route::post('/enviar_mensaje', [ListaEstudiantesTransporte::class, 'enviar_mensaje']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
