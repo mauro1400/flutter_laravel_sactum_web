@@ -32,7 +32,7 @@
                                         </thead>
                                         <!-- Agregar botón "Eliminar" a la tabla -->
                                         <tbody>
-                                            <tr v-for="estudiante in estudiantes" :key="estudiante.ci">
+                                            <tr v-for="estudiante in estudiantes" :key="estudiante.id_estudiante">
                                                 <td>
                                                     <button class="btn btn-primary"
                                                         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
