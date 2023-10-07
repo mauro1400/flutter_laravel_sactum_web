@@ -18,58 +18,6 @@
     </script>
     
 </head>
-<!--FONDO-->
-<style>
-    @media (min-width: 991.98px) {
-        main {
-            padding-left: 240px;
-            padding-top: 55px;
-            width: 100%;
-        }
-    }
-    table{
-       font-size: 13px; 
-    }
-
-    .gradient-custom {
-        background: #6a11cb;
-        background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-    }
-
-    /* Sidebar */
-    .sidebar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        padding: 58px 0 0;
-        /* Height of navbar */
-        box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-        width: 240px;
-        z-index: 600;
-    }
-
-    @media (max-width: 991.98px) {
-        .sidebar {
-            width: 100%;
-        }
-    }
-
-    /* Sidebar */
-    .card-registration .select-input.form-control[readonly]:not([disabled]) {
-        font-size: 1rem;
-        line-height: 2.15;
-        padding-left: .75em;
-        padding-right: .75em;
-    }
-
-    .card-registration .select-arrow {
-        top: 13px;
-    }
-</style>
-<!--FONDO-->
-
 <body class="gradient-custom">
     <div id="app">
         <main>

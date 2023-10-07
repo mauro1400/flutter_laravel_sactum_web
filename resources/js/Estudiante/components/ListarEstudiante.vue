@@ -7,7 +7,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    <h2 class="mb-4 text-center">Listar Estudiantes</h2>
+                                    <h2 class="mb-4 text-center">Listar Estudiantes 2</h2>
                                     <hr>
                                     <div class="container">
                                         <router-link :to="{ name: 'ingresarEstudiante' }" class="btn btn-primary"

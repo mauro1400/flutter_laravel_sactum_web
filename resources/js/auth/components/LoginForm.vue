@@ -29,10 +29,9 @@
       </div>
     </div>
     <div class="col-md-4" style="padding-left: 0px;padding-right: 0px;">
-      <img src="https://lasallelpt.edu.bo/images/colegio_la_salle.jpg" alt="Descripción de la imagen" class="img-fluid"
+      <img src="/assets/brand/la_salle.png" alt="Descripción de la imagen" class="img-fluid"
         style="border-top-right-radius: 1rem;border-bottom-right-radius:1rem; width: 100%; height: 100%; object-fit: cover;">
     </div>
-
     <div class=" col-md-1">
     </div>
   </div>
@@ -40,31 +39,36 @@
 
   
 <script>
-import axios from 'axios'
 
+import { mapActions } from "vuex";
+import axios from 'axios'
 export default {
   data() {
     return {
       form: {
         email: '',
         password: ''
-      }
+      },
+      show_password: false,
+      procesando: false,
+      errors: {},
     }
   },
   methods: {
-    async login() {
-      try {
-        const response = await axios.post('/api/login', this.form)
-        localStorage.setItem('token', response.data.token)
-        console.log(response.data)
-        
-        this.$router.push({ name: 'home' })
-      } catch (error) {
-        console.error(error)
-      }
+    ...mapActions({
+     signIn: "auth/login",
+    }),
+    async login() {      
+        this.procesando = true;
+        this.errors = {}
+        await axios.get("/sanctum/csrf-cookie");  
+        await axios.post("/api/login", this.form).then(({ data }) => {
+          
+          localStorage.setItem('token', data.token)
+          this.signIn();
+          //console.log("entro aqui 2");
+        });        
     }
   }
 }
 </script>
-
-  

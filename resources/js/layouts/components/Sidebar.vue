@@ -1,41 +1,59 @@
 <template>
-    <!-- Sidebar -->
-    <div class="d-flex flex-column sidebar sflex-shrink-0 p-3 text-bg-dark">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4">Sidebar</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li>
-                <router-link :to="{ name: 'listarEstudiante' }"
-                    class="nav-link text-white"><span>Estudiantes</span></router-link>
-            </li>
-            <li>
-                <router-link :to="{ name: 'listarChofer' }" class="nav-link text-white"><span>Choferes</span></router-link>
-                <ul>
-                    <li>
-                        <router-link :to="{ name: 'listarTransporte' }"
-                            class="nav-link text-white"><span>Trasporte</span></router-link>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <router-link :to="{ name: 'listarApoderado' }"
-                    class="nav-link text-white"><span>Apoderados</span></router-link>
-            </li>
-        </ul>
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <router-link :to="{ name: 'listarGrado' }">
+            <span>Grados</span>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'listarGestion' }">
+            <span>Gestiones</span>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'listarEstudiante' }">
+            <span>Estudiantes</span>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'listarApoderado' }">
+            <span>Apoderados</span>
+          </router-link>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span>Transporte</span>
+          </a>
+          <div class="dropdown-menu">
+            <router-link :to="{ name: 'listarChofer' }" class="dropdown-item">
+              <span>Choferes</span>
+            </router-link>
+            <router-link :to="{ name: 'listarTransportes' }" class="dropdown-item">
+              <span>Transportes Estudiante</span>
+            </router-link>
+          </div>
+        </li>
+        <!-- Agrega más elementos de la lista aquí si es necesario -->
+      </ul>
     </div>
-</template>
-<script>
-export default {
+  </template>
+  
+  <script>
+  export default {
     data() {
-        return {}
+      return {};
     },
     methods: {},
-    created() {
-    },
+    created() {},
     computed: {},
-};
-</script>
-
- 
+  };
+  </script>
+  

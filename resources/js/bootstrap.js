@@ -1,7 +1,10 @@
 window._ = require('lodash');
+import router from './router'
+import store from './store'
+
 
 try {
-    require('bootstrap');
+    //require('bootstrap');
 } catch (e) {}
 
 /**
@@ -13,6 +16,15 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.interceptors.response.use((response) => {
+    return response
+}, (error) => {
+    if (error.response.status === 401) {
+        store.dispatch('auth/logout')
+        router.push({ name: 'login' })
+    }
+    return Promise.reject(error)
+})
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

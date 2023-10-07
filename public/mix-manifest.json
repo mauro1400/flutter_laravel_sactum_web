@@ -5,6 +5,9 @@
     "/js/Sidebar.js": "/js/Sidebar.js",
     "/css/app.css": "/css/app.css",
     "/assets/brand/coreui.svg": "/assets/brand/coreui.svg",
+    "/assets/brand/la_salle.png": "/assets/brand/la_salle.png",
+    "/assets/brand/la_salle12.png": "/assets/brand/la_salle12.png",
+    "/assets/brand/tarija.png": "/assets/brand/tarija.png",
     "/assets/brand/transporte.png": "/assets/brand/transporte.png",
     "/assets/favicon/android-icon-144x144.png": "/assets/favicon/android-icon-144x144.png",
     "/assets/favicon/android-icon-192x192.png": "/assets/favicon/android-icon-192x192.png",
@@ -986,6 +989,5 @@
     "/assets/icons/x.svg": "/assets/icons/x.svg",
     "/assets/icons/yen.svg": "/assets/icons/yen.svg",
     "/assets/icons/zoom-in.svg": "/assets/icons/zoom-in.svg",
-    "/assets/icons/zoom-out.svg": "/assets/icons/zoom-out.svg",
-    "/assets/images/colegio_la_salle.jpg": "/assets/images/colegio_la_salle.jpg"
+    "/assets/icons/zoom-out.svg": "/assets/icons/zoom-out.svg"
 }
