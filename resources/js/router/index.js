@@ -10,6 +10,7 @@ import transporte from '../Transporte/router'
 import transporteestudiante from '../transporte_estudiante/router'
 import grado from '../grado/router'
 import gestion from '../gestion/router'
+import admin from '../admin/router'
 
 Vue.use(VueRouter)
 
@@ -27,7 +28,7 @@ const home = [
       requiresAuth: true,
       middleware: 'auth',
     },
-    children: auth.concat(estudiante, usuario, chofer, apoderado, transporte,transporteestudiante,grado,gestion)
+    children: auth.concat(estudiante, usuario, chofer, apoderado, transporte,transporteestudiante,grado,gestion,admin)
   }, {
     name: 'notfoundcomponent',
     path: '*',

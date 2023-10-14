@@ -26,14 +26,17 @@ Route::post('/informacionChofer', [ListaEstudiantesTransporte::class, 'DatosChof
 Route::post('/llamar-lista', [ListaEstudiantesTransporte::class, 'LLamarLista']);
 Route::post('/enviar_mensaje', [ListaEstudiantesTransporte::class, 'enviar_mensaje']);
 
+Route::get('/listarUsuarios', [UsuarioController::class, 'listarUsuarios']);
+
+
 Route::middleware('auth:sanctum')->group(function () {
-    
+
     Route::get('/listar-grado', [GradoController::class, 'index']);
     Route::get('/editar-grado/{id_grado}', [GradoController::class, 'edit']);
     Route::post('/insertar-grado', [GradoController::class, 'create']);
     Route::post('/actualizar-grado', [GradoController::class, 'update']);
     Route::get('/eliminar-grado/{id_grado}', [GradoController::class, 'eliminargrado']);
-    
+
     Route::get('/listar-gestion', [GestionController::class, 'index']);
     Route::get('/editar-gestion/{id_gestion}', [GestionController::class, 'edit']);
     Route::post('/insertar-gestion', [GestionController::class, 'create']);
@@ -41,39 +44,38 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/eliminar-gestion/{id_gestion}', [GestionController::class, 'eliminargestion']);
 
     Route::get('/persona', [AuthenticationController::class, 'persona']);
-
+    //usuarios
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    //Route::get('/informacion-usuario/{id}', [UsuarioController::class, 'informacionUsuario']);
     //estudiantes
     Route::get('/listar-estudiantes', [PersonaEstudianteController::class, 'index']);
     Route::post('/insertar-persona-estudiante', [PersonaEstudianteController::class, 'insertarPersonaEstudiante']);
     Route::delete('/eliminar-estudiantes/{id_persona}', [PersonaEstudianteController::class, 'eliminarPersonaEstudiante']);
     Route::get('/editar-estudiante/{id_persona}', [PersonaEstudianteController::class, 'editarPersonaEstudiante']);
     Route::post('/actualizar-estudiantes/{id_persona}', [PersonaEstudianteController::class, 'actualizarPersonaEstudiante']);
-    
+
     //transporte-estudiante
     Route::get('/listar-transporte-estudiante/{id_transporte}', [TransporteEstudianteController::class, 'DatosEstudianteTransporte']);
     Route::post('/insertar-transporte-estudiante', [TransporteEstudianteController::class, 'insertarTransporteEstudiante']);
     Route::delete('/eliminar-transporte-estudiante/{id_persona}', [TransporteEstudianteController::class, 'eliminarTransporteEstudiante']);
     Route::get('/editar-transporte-estudiante/{id_persona}', [TransporteEstudianteController::class, 'editarTransporteEstudiante']);
     Route::post('/actualizar-transporte-estudiante/{id_persona}', [TransporteEstudianteController::class, 'actualizarTransporteEstudiante']);
-    
+
     //chofer
     Route::get('/listar-chofer', [PersonaChoferController::class, 'index']);
     Route::post('/insertar-persona-chofer', [PersonaChoferController::class, 'insertarPersonaChofer']);
     Route::delete('/eliminar-chofer/{id_persona}', [PersonaChoferController::class, 'eliminarPersonaChofer']);
     Route::get('/editar-chofer/{id_persona}', [PersonaChoferController::class, 'editarPersonaChofer']);
     Route::post('/actualizar-chofer/{id_persona}', [PersonaChoferController::class, 'actualizarPersonaChofer']);
-    
+
     //Apoderado
     Route::get('/listar-apoderado', [PersonaApoderadoController::class, 'index']);
     Route::post('/insertar-persona-apoderado', [PersonaApoderadoController::class, 'insertarPersonaApoderado']);
     Route::delete('/eliminar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'eliminarPersonaApoderado']);
     Route::get('/editar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'editarPersonaApoderado']);
     Route::post('/actualizar-apoderado/{id_persona}', [PersonaApoderadoController::class, 'actualizarPersonaApoderado']);
-    
+
     //transporte
     Route::get('/listar-transporte', [TransporteController::class, 'index']);
     Route::post('/insertar-transporte', [TransporteController::class, 'insertarTransporte']);
